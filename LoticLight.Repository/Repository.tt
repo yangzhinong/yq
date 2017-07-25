@@ -1,0 +1,52 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ include file="EF.Utility.CS.ttinclude"#><#@
+ output extension=".cs"#>
+ 
+<#
+
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+CodeRegion region = new CodeRegion(this, 1);
+MetadataTools ef = new MetadataTools(this);
+
+string inputFile = @"..\\LoticLight.Model\\Model.edmx";
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+string namespaceName = code.VsNamespaceSuggestion();
+
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+
+#>
+using  LoticLight.Model;
+
+namespace LoticLight.Repository
+{
+   
+<#
+// Emit Entity Types
+
+foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
+{
+    //fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");
+    //BeginNamespace(namespaceName, code);    
+#>	
+
+	public partial class <#=entity.Name#>Repository :BaseRepository<<#=entity.Name#>>
+    {
+	 static <#=entity.Name#>Repository _instance;
+        public static <#=entity.Name#>Repository Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    return new <#=entity.Name#>Repository();
+                else
+                    return _instance;
+            }
+        }
+         
+    }
+
+<#}#>
+	
+}

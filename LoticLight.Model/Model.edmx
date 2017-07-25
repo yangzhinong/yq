@@ -1,0 +1,1367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Testing_DB_backModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Sms_DataDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Value" Type="nvarchar" MaxLength="200" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="500" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sms_Setting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="500" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifyTime" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sys_Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MenuId" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActionCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ActionIcon" Type="nvarchar" MaxLength="30" />
+          <Property Name="ActionHref" Type="nvarchar" MaxLength="70" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifyTime" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sys_Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="creator" Type="nvarchar" MaxLength="50" />
+          <Property Name="createtime" Type="datetime" />
+          <Property Name="updator" Type="nvarchar" MaxLength="50" />
+          <Property Name="updatetime" Type="datetime" />
+          <Property Name="Int01" Type="int" />
+          <Property Name="Int02" Type="int" />
+          <Property Name="Int03" Type="int" />
+          <Property Name="Int04" Type="int" />
+          <Property Name="Int05" Type="int" />
+          <Property Name="str01" Type="nvarchar" MaxLength="50" />
+          <Property Name="str02" Type="nvarchar" MaxLength="50" />
+          <Property Name="str03" Type="nvarchar" MaxLength="50" />
+          <Property Name="str04" Type="nvarchar" MaxLength="50" />
+          <Property Name="str05" Type="nvarchar" MaxLength="50" />
+          <Property Name="db01" Type="float" />
+          <Property Name="db02" Type="float" />
+          <Property Name="db03" Type="float" />
+          <Property Name="db04" Type="float" />
+          <Property Name="db05" Type="float" />
+        </EntityType>
+        <EntityType Name="Sys_GridView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifyTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuId" Type="nvarchar" MaxLength="50" />
+          <Property Name="ViewCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ViewName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sys_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryType" Type="int" />
+          <Property Name="OperateTypeId" Type="int" />
+          <Property Name="OperateType" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourceObjectId" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourceContentJson" Type="nvarchar(max)" />
+          <Property Name="OperateTime" Type="smalldatetime" />
+          <Property Name="OperateUserId" Type="nvarchar" MaxLength="50" />
+          <Property Name="OperateAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="MenuId" Type="nvarchar" MaxLength="50" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccessURL" Type="nvarchar" MaxLength="150" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Host" Type="nvarchar" MaxLength="50" />
+          <Property Name="Browser" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExecuteResult" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExecuteResultJson" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ModifyTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sys_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentId" Type="nvarchar" MaxLength="50" />
+          <Property Name="MenuCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortCode" Type="int" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MenuIcon" Type="nvarchar" MaxLength="30" />
+          <Property Name="MenuHref" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsLeaf" Type="bit" Nullable="false" />
+          <Property Name="ShowCheck" Type="bit" Nullable="false" />
+          <Property Name="IsExpand" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifyTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sys_Relation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RelationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RelationOne" Type="nvarchar" MaxLength="50" />
+          <Property Name="RelationTwo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifyTime" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sys_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifyTime" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sys_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreatTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifyTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="DeptID" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sys_UserToken">
+          <Key>
+            <PropertyRef Name="Token" />
+          </Key>
+          <Property Name="Token" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreatTime" Type="smalldatetime" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="smalldatetime" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="YqGSM">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="creator" Type="nvarchar" MaxLength="50" />
+          <Property Name="createtime" Type="datetime" />
+          <Property Name="updator" Type="nvarchar" MaxLength="50" />
+          <Property Name="updatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="YqGSMFeedBack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GSM" Type="nvarchar" MaxLength="50" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Feedback" Type="nvarchar" MaxLength="500" />
+          <Property Name="weekInt" Type="int" />
+          <Property Name="FeekBackTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="YqLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YqNPSA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="creator" Type="nvarchar" MaxLength="50" />
+          <Property Name="createtime" Type="datetime" />
+          <Property Name="updator" Type="nvarchar" MaxLength="50" />
+          <Property Name="updatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="YqNPSAData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WeekInt" Type="int" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Project" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Demand" Type="int" />
+          <Property Name="API" Type="date" />
+          <Property Name="NPSA" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="YqNPSAInputData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InputDate" Type="datetime" />
+          <Property Name="Mode" Type="nvarchar" MaxLength="20" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Project" Type="nvarchar" MaxLength="50" />
+          <Property Name="Demand" Type="int" />
+          <Property Name="API" Type="date" />
+          <Property Name="WeekInt" Type="int" />
+          <Property Name="NPSA" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="YqPN">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Desp" Type="nvarchar" MaxLength="250" />
+          <Property Name="SBBType" Type="nvarchar" MaxLength="50" />
+          <Property Name="GSM" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vendor" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="YqPnLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="YqPnProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Project" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="YqPnQty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImportDate" Type="datetime" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="WeekInt" Type="int" />
+        </EntityType>
+        <EntityType Name="YqProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="NPSA" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="YqSBBType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YqVendor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YqWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WeekInt" Type="int" Nullable="false" />
+          <Property Name="Desp" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Monday" Type="date" />
+          <Property Name="Friday" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'yq.dbo.YqViewNPSAData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="YqViewNPSAData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WeekInt" Type="int" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Desp" Type="nvarchar" MaxLength="250" />
+          <Property Name="Project" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="API" Type="date" />
+          <Property Name="NPSA" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'yq.dbo.YqViewNPSAInputData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="YqViewNPSAInputData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InputDate" Type="datetime" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="SBBType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PNDesp" Type="nvarchar" MaxLength="250" />
+          <Property Name="Project" Type="nvarchar" MaxLength="50" />
+          <Property Name="API" Type="date" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vendor" Type="nvarchar" MaxLength="50" />
+          <Property Name="WeekInt" Type="int" />
+          <Property Name="WeekDesp" Type="nvarchar" MaxLength="250" />
+          <Property Name="GSM" Type="nvarchar" MaxLength="50" />
+          <Property Name="Demand" Type="int" />
+          <Property Name="Mode" Type="nvarchar" MaxLength="20" />
+          <Property Name="NPSA" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'yq.dbo.YqViewPN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="YqViewPN">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Desp" Type="nvarchar" MaxLength="250" />
+          <Property Name="SBBType" Type="nvarchar" MaxLength="50" />
+          <Property Name="GSM" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vendor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Locations" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="Testing_DB_backModelStoreContainer">
+          <EntitySet Name="Sms_DataDictionary" EntityType="Self.Sms_DataDictionary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sms_Setting" EntityType="Self.Sms_Setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sys_Action" EntityType="Self.Sys_Action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sys_Department" EntityType="Self.Sys_Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sys_GridView" EntityType="Self.Sys_GridView" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sys_Log" EntityType="Self.Sys_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sys_Menu" EntityType="Self.Sys_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sys_Relation" EntityType="Self.Sys_Relation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sys_Role" EntityType="Self.Sys_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sys_User" EntityType="Self.Sys_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sys_UserToken" EntityType="Self.Sys_UserToken" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqGSM" EntityType="Self.YqGSM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqGSMFeedBack" EntityType="Self.YqGSMFeedBack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqLocation" EntityType="Self.YqLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqNPSA" EntityType="Self.YqNPSA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqNPSAData" EntityType="Self.YqNPSAData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqNPSAInputData" EntityType="Self.YqNPSAInputData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqPN" EntityType="Self.YqPN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqPnLocation" EntityType="Self.YqPnLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqPnProject" EntityType="Self.YqPnProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqPnQty" EntityType="Self.YqPnQty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqProject" EntityType="Self.YqProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqSBBType" EntityType="Self.YqSBBType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqVendor" EntityType="Self.YqVendor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqWeek" EntityType="Self.YqWeek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YqViewNPSAData" EntityType="Self.YqViewNPSAData" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [YqViewNPSAData].[Id] AS [Id], 
+    [YqViewNPSAData].[WeekInt] AS [WeekInt], 
+    [YqViewNPSAData].[PN] AS [PN], 
+    [YqViewNPSAData].[Desp] AS [Desp], 
+    [YqViewNPSAData].[Project] AS [Project], 
+    [YqViewNPSAData].[Location] AS [Location], 
+    [YqViewNPSAData].[API] AS [API], 
+    [YqViewNPSAData].[NPSA] AS [NPSA]
+    FROM [dbo].[YqViewNPSAData] AS [YqViewNPSAData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="YqViewNPSAInputData" EntityType="Self.YqViewNPSAInputData" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [YqViewNPSAInputData].[Id] AS [Id], 
+    [YqViewNPSAInputData].[InputDate] AS [InputDate], 
+    [YqViewNPSAInputData].[PN] AS [PN], 
+    [YqViewNPSAInputData].[SBBType] AS [SBBType], 
+    [YqViewNPSAInputData].[PNDesp] AS [PNDesp], 
+    [YqViewNPSAInputData].[Project] AS [Project], 
+    [YqViewNPSAInputData].[API] AS [API], 
+    [YqViewNPSAInputData].[Location] AS [Location], 
+    [YqViewNPSAInputData].[Vendor] AS [Vendor], 
+    [YqViewNPSAInputData].[WeekInt] AS [WeekInt], 
+    [YqViewNPSAInputData].[WeekDesp] AS [WeekDesp], 
+    [YqViewNPSAInputData].[GSM] AS [GSM], 
+    [YqViewNPSAInputData].[Demand] AS [Demand], 
+    [YqViewNPSAInputData].[Mode] AS [Mode], 
+    [YqViewNPSAInputData].[NPSA] AS [NPSA]
+    FROM [dbo].[YqViewNPSAInputData] AS [YqViewNPSAInputData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="YqViewPN" EntityType="Self.YqViewPN" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [YqViewPN].[Id] AS [Id], 
+    [YqViewPN].[PN] AS [PN], 
+    [YqViewPN].[Desp] AS [Desp], 
+    [YqViewPN].[SBBType] AS [SBBType], 
+    [YqViewPN].[GSM] AS [GSM], 
+    [YqViewPN].[Vendor] AS [Vendor], 
+    [YqViewPN].[Locations] AS [Locations]
+    FROM [dbo].[YqViewPN] AS [YqViewPN]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Testing_DB_backModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Sms_DataDictionary" EntityType="Testing_DB_backModel.Sms_DataDictionary" />
+          <EntitySet Name="Sms_Setting" EntityType="Testing_DB_backModel.Sms_Setting" />
+          <EntitySet Name="Sys_Action" EntityType="Testing_DB_backModel.Sys_Action" />
+          <EntitySet Name="Sys_Department" EntityType="Testing_DB_backModel.Sys_Department" />
+          <EntitySet Name="Sys_GridView" EntityType="Testing_DB_backModel.Sys_GridView" />
+          <EntitySet Name="Sys_Log" EntityType="Testing_DB_backModel.Sys_Log" />
+          <EntitySet Name="Sys_Menu" EntityType="Testing_DB_backModel.Sys_Menu" />
+          <EntitySet Name="Sys_Relation" EntityType="Testing_DB_backModel.Sys_Relation" />
+          <EntitySet Name="Sys_Role" EntityType="Testing_DB_backModel.Sys_Role" />
+          <EntitySet Name="Sys_User" EntityType="Testing_DB_backModel.Sys_User" />
+          <EntitySet Name="Sys_UserToken" EntityType="Testing_DB_backModel.Sys_UserToken" />
+          <EntitySet Name="sysdiagrams" EntityType="Testing_DB_backModel.sysdiagrams" />
+          <EntitySet Name="YqGSM" EntityType="Testing_DB_backModel.YqGSM" />
+          <EntitySet Name="YqGSMFeedBack" EntityType="Testing_DB_backModel.YqGSMFeedBack" />
+          <EntitySet Name="YqLocation" EntityType="Testing_DB_backModel.YqLocation" />
+          <EntitySet Name="YqNPSA" EntityType="Testing_DB_backModel.YqNPSA" />
+          <EntitySet Name="YqNPSAData" EntityType="Testing_DB_backModel.YqNPSAData" />
+          <EntitySet Name="YqNPSAInputData" EntityType="Testing_DB_backModel.YqNPSAInputData" />
+          <EntitySet Name="YqPN" EntityType="Testing_DB_backModel.YqPN" />
+          <EntitySet Name="YqPnLocation" EntityType="Testing_DB_backModel.YqPnLocation" />
+          <EntitySet Name="YqPnProject" EntityType="Testing_DB_backModel.YqPnProject" />
+          <EntitySet Name="YqPnQty" EntityType="Testing_DB_backModel.YqPnQty" />
+          <EntitySet Name="YqProject" EntityType="Testing_DB_backModel.YqProject" />
+          <EntitySet Name="YqSBBType" EntityType="Testing_DB_backModel.YqSBBType" />
+          <EntitySet Name="YqVendor" EntityType="Testing_DB_backModel.YqVendor" />
+          <EntitySet Name="YqWeek" EntityType="Testing_DB_backModel.YqWeek" />
+          <EntitySet Name="YqViewNPSAData" EntityType="Testing_DB_backModel.YqViewNPSAData" />
+          <EntitySet Name="YqViewNPSAInputData" EntityType="Testing_DB_backModel.YqViewNPSAInputData" />
+          <EntitySet Name="YqViewPN" EntityType="Testing_DB_backModel.YqViewPN" />
+        </EntityContainer>
+        <EntityType Name="Sms_DataDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Describe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Modifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sms_Setting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Modifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Sys_Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MenuId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ActionIcon" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ActionHref" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Modifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Sys_Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeptName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createtime" Type="DateTime" Precision="3" />
+          <Property Name="updator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="updatetime" Type="DateTime" Precision="3" />
+          <Property Name="Int01" Type="Int32" />
+          <Property Name="Int02" Type="Int32" />
+          <Property Name="Int03" Type="Int32" />
+          <Property Name="Int04" Type="Int32" />
+          <Property Name="Int05" Type="Int32" />
+          <Property Name="str01" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="str02" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="str03" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="str04" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="str05" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="db01" Type="Double" />
+          <Property Name="db02" Type="Double" />
+          <Property Name="db03" Type="Double" />
+          <Property Name="db04" Type="Double" />
+          <Property Name="db05" Type="Double" />
+        </EntityType>
+        <EntityType Name="Sys_GridView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ViewCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ViewName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Modifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sys_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryType" Type="Int32" />
+          <Property Name="OperateTypeId" Type="Int32" />
+          <Property Name="OperateType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SourceObjectId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SourceContentJson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OperateTime" Type="DateTime" Precision="0" />
+          <Property Name="OperateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OperateAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MenuId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MenuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccessURL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Host" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Browser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExecuteResult" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExecuteResultJson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Modifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sys_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MenuCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MenuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortCode" Type="Int32" />
+          <Property Name="Describe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MenuIcon" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MenuHref" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsLeaf" Type="Boolean" Nullable="false" />
+          <Property Name="ShowCheck" Type="Boolean" Nullable="false" />
+          <Property Name="IsExpand" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Modifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sys_Relation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RelationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RelationOne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RelationTwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Modifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Sys_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Modifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Sys_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CreatTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Modifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="DeptID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sys_UserToken">
+          <Key>
+            <PropertyRef Name="Token" />
+          </Key>
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreatTime" Type="DateTime" Precision="0" />
+          <Property Name="Creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="0" />
+          <Property Name="Modifier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="YqGSM">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createtime" Type="DateTime" Precision="3" />
+          <Property Name="updator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="updatetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="YqGSMFeedBack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GSM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Feedback" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="weekInt" Type="Int32" />
+          <Property Name="FeekBackTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="YqLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YqNPSA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createtime" Type="DateTime" Precision="3" />
+          <Property Name="updator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="updatetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="YqNPSAData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WeekInt" Type="Int32" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Demand" Type="Int32" />
+          <Property Name="API" Type="DateTime" Precision="0" />
+          <Property Name="NPSA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YqNPSAInputData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InputDate" Type="DateTime" Precision="3" />
+          <Property Name="Mode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Demand" Type="Int32" />
+          <Property Name="API" Type="DateTime" Precision="0" />
+          <Property Name="WeekInt" Type="Int32" />
+          <Property Name="NPSA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YqPN">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Desp" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SBBType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GSM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YqPnLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YqPnProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YqPnQty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImportDate" Type="DateTime" Precision="3" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="WeekInt" Type="Int32" />
+        </EntityType>
+        <EntityType Name="YqProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NPSA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YqSBBType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YqVendor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YqWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WeekInt" Type="Int32" Nullable="false" />
+          <Property Name="Desp" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Monday" Type="DateTime" Precision="0" />
+          <Property Name="Friday" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="YqViewNPSAData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WeekInt" Type="Int32" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Desp" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="API" Type="DateTime" Precision="0" />
+          <Property Name="NPSA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YqViewNPSAInputData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InputDate" Type="DateTime" Precision="3" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SBBType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PNDesp" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="API" Type="DateTime" Precision="0" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WeekInt" Type="Int32" />
+          <Property Name="WeekDesp" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="GSM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Demand" Type="Int32" />
+          <Property Name="Mode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NPSA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YqViewPN">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Desp" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SBBType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GSM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Locations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Testing_DB_backModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Sms_DataDictionary">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sms_DataDictionary">
+              <MappingFragment StoreEntitySet="Sms_DataDictionary">
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sms_Setting">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sms_Setting">
+              <MappingFragment StoreEntitySet="Sms_Setting">
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_Action">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sys_Action">
+              <MappingFragment StoreEntitySet="Sys_Action">
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ActionHref" ColumnName="ActionHref" />
+                <ScalarProperty Name="ActionIcon" ColumnName="ActionIcon" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ActionCode" ColumnName="ActionCode" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_Department">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sys_Department">
+              <MappingFragment StoreEntitySet="Sys_Department">
+                <ScalarProperty Name="db05" ColumnName="db05" />
+                <ScalarProperty Name="db04" ColumnName="db04" />
+                <ScalarProperty Name="db03" ColumnName="db03" />
+                <ScalarProperty Name="db02" ColumnName="db02" />
+                <ScalarProperty Name="db01" ColumnName="db01" />
+                <ScalarProperty Name="str05" ColumnName="str05" />
+                <ScalarProperty Name="str04" ColumnName="str04" />
+                <ScalarProperty Name="str03" ColumnName="str03" />
+                <ScalarProperty Name="str02" ColumnName="str02" />
+                <ScalarProperty Name="str01" ColumnName="str01" />
+                <ScalarProperty Name="Int05" ColumnName="Int05" />
+                <ScalarProperty Name="Int04" ColumnName="Int04" />
+                <ScalarProperty Name="Int03" ColumnName="Int03" />
+                <ScalarProperty Name="Int02" ColumnName="Int02" />
+                <ScalarProperty Name="Int01" ColumnName="Int01" />
+                <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+                <ScalarProperty Name="updator" ColumnName="updator" />
+                <ScalarProperty Name="createtime" ColumnName="createtime" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="AdID" ColumnName="AdID" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_GridView">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sys_GridView">
+              <MappingFragment StoreEntitySet="Sys_GridView">
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
+                <ScalarProperty Name="ViewCode" ColumnName="ViewCode" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_Log">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sys_Log">
+              <MappingFragment StoreEntitySet="Sys_Log">
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ExecuteResultJson" ColumnName="ExecuteResultJson" />
+                <ScalarProperty Name="ExecuteResult" ColumnName="ExecuteResult" />
+                <ScalarProperty Name="Browser" ColumnName="Browser" />
+                <ScalarProperty Name="Host" ColumnName="Host" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="AccessURL" ColumnName="AccessURL" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="OperateAccount" ColumnName="OperateAccount" />
+                <ScalarProperty Name="OperateUserId" ColumnName="OperateUserId" />
+                <ScalarProperty Name="OperateTime" ColumnName="OperateTime" />
+                <ScalarProperty Name="SourceContentJson" ColumnName="SourceContentJson" />
+                <ScalarProperty Name="SourceObjectId" ColumnName="SourceObjectId" />
+                <ScalarProperty Name="OperateType" ColumnName="OperateType" />
+                <ScalarProperty Name="OperateTypeId" ColumnName="OperateTypeId" />
+                <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_Menu">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sys_Menu">
+              <MappingFragment StoreEntitySet="Sys_Menu">
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsExpand" ColumnName="IsExpand" />
+                <ScalarProperty Name="ShowCheck" ColumnName="ShowCheck" />
+                <ScalarProperty Name="IsLeaf" ColumnName="IsLeaf" />
+                <ScalarProperty Name="MenuHref" ColumnName="MenuHref" />
+                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_Relation">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sys_Relation">
+              <MappingFragment StoreEntitySet="Sys_Relation">
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="RelationTwo" ColumnName="RelationTwo" />
+                <ScalarProperty Name="RelationOne" ColumnName="RelationOne" />
+                <ScalarProperty Name="RelationName" ColumnName="RelationName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_Role">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sys_Role">
+              <MappingFragment StoreEntitySet="Sys_Role">
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_User">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sys_User">
+              <MappingFragment StoreEntitySet="Sys_User">
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_UserToken">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.Sys_UserToken">
+              <MappingFragment StoreEntitySet="Sys_UserToken">
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqGSM">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqGSM">
+              <MappingFragment StoreEntitySet="YqGSM">
+                <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+                <ScalarProperty Name="updator" ColumnName="updator" />
+                <ScalarProperty Name="createtime" ColumnName="createtime" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqGSMFeedBack">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqGSMFeedBack">
+              <MappingFragment StoreEntitySet="YqGSMFeedBack">
+                <ScalarProperty Name="FeekBackTime" ColumnName="FeekBackTime" />
+                <ScalarProperty Name="weekInt" ColumnName="weekInt" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="GSM" ColumnName="GSM" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqLocation">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqLocation">
+              <MappingFragment StoreEntitySet="YqLocation">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqNPSA">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqNPSA">
+              <MappingFragment StoreEntitySet="YqNPSA">
+                <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+                <ScalarProperty Name="updator" ColumnName="updator" />
+                <ScalarProperty Name="createtime" ColumnName="createtime" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqNPSAData">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqNPSAData">
+              <MappingFragment StoreEntitySet="YqNPSAData">
+                <ScalarProperty Name="NPSA" ColumnName="NPSA" />
+                <ScalarProperty Name="API" ColumnName="API" />
+                <ScalarProperty Name="Demand" ColumnName="Demand" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="WeekInt" ColumnName="WeekInt" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqNPSAInputData">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqNPSAInputData">
+              <MappingFragment StoreEntitySet="YqNPSAInputData">
+                <ScalarProperty Name="NPSA" ColumnName="NPSA" />
+                <ScalarProperty Name="WeekInt" ColumnName="WeekInt" />
+                <ScalarProperty Name="API" ColumnName="API" />
+                <ScalarProperty Name="Demand" ColumnName="Demand" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqPN">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqPN">
+              <MappingFragment StoreEntitySet="YqPN">
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+                <ScalarProperty Name="GSM" ColumnName="GSM" />
+                <ScalarProperty Name="SBBType" ColumnName="SBBType" />
+                <ScalarProperty Name="Desp" ColumnName="Desp" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqPnLocation">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqPnLocation">
+              <MappingFragment StoreEntitySet="YqPnLocation">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqPnProject">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqPnProject">
+              <MappingFragment StoreEntitySet="YqPnProject">
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqPnQty">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqPnQty">
+              <MappingFragment StoreEntitySet="YqPnQty">
+                <ScalarProperty Name="WeekInt" ColumnName="WeekInt" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqProject">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqProject">
+              <MappingFragment StoreEntitySet="YqProject">
+                <ScalarProperty Name="NPSA" ColumnName="NPSA" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqSBBType">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqSBBType">
+              <MappingFragment StoreEntitySet="YqSBBType">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqVendor">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqVendor">
+              <MappingFragment StoreEntitySet="YqVendor">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqWeek">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqWeek">
+              <MappingFragment StoreEntitySet="YqWeek">
+                <ScalarProperty Name="Friday" ColumnName="Friday" />
+                <ScalarProperty Name="Monday" ColumnName="Monday" />
+                <ScalarProperty Name="Desp" ColumnName="Desp" />
+                <ScalarProperty Name="WeekInt" ColumnName="WeekInt" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqViewNPSAData">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqViewNPSAData">
+              <MappingFragment StoreEntitySet="YqViewNPSAData">
+                <ScalarProperty Name="NPSA" ColumnName="NPSA" />
+                <ScalarProperty Name="API" ColumnName="API" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Desp" ColumnName="Desp" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="WeekInt" ColumnName="WeekInt" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqViewNPSAInputData">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqViewNPSAInputData">
+              <MappingFragment StoreEntitySet="YqViewNPSAInputData">
+                <ScalarProperty Name="NPSA" ColumnName="NPSA" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="Demand" ColumnName="Demand" />
+                <ScalarProperty Name="GSM" ColumnName="GSM" />
+                <ScalarProperty Name="WeekDesp" ColumnName="WeekDesp" />
+                <ScalarProperty Name="WeekInt" ColumnName="WeekInt" />
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="API" ColumnName="API" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="PNDesp" ColumnName="PNDesp" />
+                <ScalarProperty Name="SBBType" ColumnName="SBBType" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YqViewPN">
+            <EntityTypeMapping TypeName="Testing_DB_backModel.YqViewPN">
+              <MappingFragment StoreEntitySet="YqViewPN">
+                <ScalarProperty Name="Locations" ColumnName="Locations" />
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+                <ScalarProperty Name="GSM" ColumnName="GSM" />
+                <ScalarProperty Name="SBBType" ColumnName="SBBType" />
+                <ScalarProperty Name="Desp" ColumnName="Desp" />
+                <ScalarProperty Name="PN" ColumnName="PN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
