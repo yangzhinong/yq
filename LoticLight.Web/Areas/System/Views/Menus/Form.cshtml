@@ -1,0 +1,595 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+
+<script type="text/javascript">
+    var keyValue = request('keyValue');
+    var parentId = request('parentId');
+    $(function () {
+
+        initialPage();
+        buttonOperation();
+        getGridButton();
+        getGridView();
+    })
+    //初始化页面
+    function initialPage() {
+        //加载导向
+        $('#wizard').wizard().on('change', function (e, data) {
+            var $finish = $("#btn_finish");
+            var $next = $("#btn_next");
+            if (data.direction == "next") {
+                if (data.step == 2) {
+                    $finish.removeAttr('disabled');
+                    $next.attr('disabled', 'disabled');
+                } else {
+                    $finish.attr('disabled', 'disabled');
+                }
+            } else {
+                $finish.attr('disabled', 'disabled');
+                $next.removeAttr('disabled');
+            }
+        });
+        initControl();
+    }
+    //初始化控件
+    function initControl() {
+        //菜单类型
+        $("#IsLeaf").ComboBox({
+            description: "==请选择==",
+            height: "200px"
+        });
+        //上级
+        $("#ParentId").ComboBoxTree({
+            url: "/System/BaseData/TreeData",
+            description: "==请选择==",
+            height: "195px",
+            allowSearch: true
+        });
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "/System/Menus/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data);
+                    if (data.IsLeaf) {
+                        $("#btn_next").removeAttr('disabled');
+                        $("#btn_finish").attr('disabled', 'disabled');
+                    }
+                }
+            });
+        } else {
+            $("#ParentId").ComboBoxTreeSetValue(parentId);
+        }
+    }
+    //选取图标
+    function SelectIcon() {
+        dialogOpen({
+            id: "SelectIcon",
+            title: '选取图标',
+            url: '/System/BaseData/IconList?ControlId=MenuIcon',
+            width: "1000px",
+            height: "600px",
+            btn: false
+        })
+    }
+
+    //按钮操作（上一步、下一步、完成、关闭）
+
+    function buttonOperation() {
+        var $last = $("#btn_last");
+        var $next = $("#btn_next");
+        var $finish = $("#btn_finish");
+        //如果是菜单，开启 上一步、下一步
+        $("#IsLeaf").ComboBox({
+            onselect: function (value) {
+                if (value == "true") {
+                    $next.removeAttr('disabled');
+                    $finish.attr('disabled', 'disabled');
+                } else {
+                    $next.attr('disabled', 'disabled');
+                    $finish.removeAttr('disabled');
+                }
+            }
+
+        });
+        //完成提交保存
+        $finish.click(function () {
+            AcceptClick();
+        })
+    }
+    /*系统按钮being==================================*/
+    var buttonJson = "";
+    function getGridButton() {
+        var MenuId = $("#Id").val();
+        $.ajax({
+            url: "/System/Menus/GetActionsData?MenuId=" + escape(MenuId),
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                buttonJson = data;
+            },
+        });
+
+        var $grid = $("#gridTable-button");
+        $grid.jqGrid({
+            unwritten: false,
+            url: "/System/Menus/GetActionsData?MenuId=" + escape(MenuId),
+            datatype: "json",
+            height: $(window).height() - 165,
+            width: $(window).width() - 11,
+            colModel: [
+                {
+                    label: "主键", name: "ActionId", hidden: true, formatter: function (cellvalue, options, rowObject) {
+                        if (rowObject.Id == "") return cellvalue;
+                        return rowObject.Id;
+                    }
+                },
+                { label: "主键", name: "Id", hidden: true },
+                { label: "名称", name: "ActionName", width: 140, align: "left", sortable: false },
+                { label: "编号", name: "ActionCode", width: 140, align: "left", sortable: false },
+                { label: "地址", name: "ActionHref", width: 500, align: "left", sortable: false },
+            ],
+            // multiselect: true,多选
+            // treeGrid: true,
+            // treeGridModel: "nested",
+            // ExpandColumn: "ActionCode",
+            rowNum: "1000",
+            rownumbers: true
+        });
+        //新增
+        $("#action-add-button").click(function () {
+            dialogOpen({
+                id: "buttonForm",
+                title: '添加按钮',
+                url: '/System/Menus/ActionForm?MenuId=' + escape(MenuId),
+                width: "450px",
+                height: "300px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].AcceptClick(function (data) {
+                        buttonJson.push(data);
+                        $grid[0].addJSONData(buttonJson);
+                    });
+                }
+            });
+        })
+        //编辑
+        $("#action-edit-button").click(function () {
+            var ActionId = $("#gridTable-button").jqGridRowValue("ActionId");
+            if (checkedRow(ActionId)) {
+                dialogOpen({
+                    id: "buttonForm",
+                    title: '编辑按钮',
+                    url: '/System/Menus/ActionForm?Id=' + ActionId + "&MenuId=" + escape(MenuId),
+                    width: "450px",
+                    height: "300px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].AcceptClick(function (data) {
+                            $.each(buttonJson, function (i) {
+                                if (buttonJson[i].Id == ActionId || buttonJson[i].ActionId == ActionId) {
+                                    buttonJson[i] = data;
+                                }
+                            });
+                            $grid[0].addJSONData(buttonJson);
+
+                        });
+                    }
+                });
+            }
+        })
+        //删除
+        $("#action-delete-button").click(function () {
+            var actionId = $("#gridTable-button").jqGridRowValue("ActionId");
+            if (checkedRow(actionId)) {
+                $.each(buttonJson, function (i) {
+                    if (buttonJson[i].Id == actionId || buttonJson[i].ActionId == actionId) {
+                        buttonJson.splice(i, 1);
+                        return false;
+                    }
+                });
+                $grid[0].addJSONData(buttonJson);
+            }
+        });
+
+        //CRUD生成
+
+        $("#action-copy-button").click(function () {
+            var guid = new GUID();
+            var hrefHost = $("#MenuHref").val();
+            if (hrefHost == "" || hrefHost.length < 5 || hrefHost.lastIndexOf('/')==-1)
+            {
+                dialogMsg("请在第一步填写正确的地址");
+            }
+            hrefHost = hrefHost.substring(0, hrefHost.lastIndexOf('/')+1);
+           
+            //添加
+            var isnew = true;
+            $.each(buttonJson, function (j) {
+                if (buttonJson[j].ActionCode == "action-add"
+                    || buttonJson[j].ActionName == "添加") {
+                    isnew = false;
+                    return false;
+                }
+            });
+            if (isnew)
+                buttonJson.push(
+                    { Id: "", ActionId: guid.newGUID(), ActionName: "添加", ActionCode: "action-add", Describe: "添加", ActionHref: hrefHost + "Form" }
+               );
+
+            //修改
+           isnew = true;
+            $.each(buttonJson, function (j) {
+                if (buttonJson[j].ActionCode == "action-edit"
+                    || buttonJson[j].ActionName == "编辑") {
+                    isnew = false;
+                    return false;
+                }
+            });
+            if (isnew)
+                buttonJson.push(
+                    { Id: "", ActionId: guid.newGUID(), ActionName: "编辑", ActionCode: "action-edit", Describe: "编辑", ActionHref: hrefHost + "Form" }
+               );
+            //删除
+            isnew = true;
+            $.each(buttonJson, function (j) {
+                if (buttonJson[j].ActionCode == "action-delete"
+                    || buttonJson[j].ActionName == "删除") {
+                    isnew = false;
+                    return false;
+                }
+            });
+            if (isnew)
+                buttonJson.push(
+                    { Id: "", ActionId: guid.newGUID(), ActionName: "删除", ActionCode: "action-delete", Describe: "删除", ActionHref: hrefHost + "Delete" }
+               );
+            //保存表单
+            isnew = true;
+            $.each(buttonJson, function (j) {
+                if (buttonJson[j].ActionCode == "action-saveForm"
+                    || buttonJson[j].ActionName == "保存表单") {
+                    isnew = false;
+                    return false;
+                }
+            });
+            if (isnew)
+                buttonJson.push(
+                    { Id: "", ActionId: guid.newGUID(), ActionName: "保存表单", ActionCode: "action-saveForm", Describe: "保存表单", ActionHref: hrefHost + "SaveForm" }
+               );
+            //表单数据
+            isnew = true;
+            $.each(buttonJson, function (j) {
+                if (buttonJson[j].ActionCode == "action-formJson"
+                    || buttonJson[j].ActionName == "表单数据") {
+                    isnew = false;
+                    return false;
+                }
+            });
+            if (isnew)
+                buttonJson.push(
+                    { Id: "", ActionId: guid.newGUID(), ActionName: "表单数据", ActionCode: "action-formJson", Describe: "表单数据", ActionHref: hrefHost + "GetFormJson" }
+               );
+            //列表数据
+            isnew = true;
+            $.each(buttonJson, function (j) {
+                if (buttonJson[j].ActionCode == "action-GridData"
+                    || buttonJson[j].ActionName == "列表数据") {
+                    isnew = false;
+                    return false;
+                }
+            });
+            if (isnew)
+                buttonJson.push(
+                    { Id: "", ActionId: guid.newGUID(), ActionName: "列表数据", ActionCode: "action-GridData", Describe: "列表数据", ActionHref: hrefHost + "GridData" }
+               );
+
+            //刷新
+            isnew = true;
+            $.each(buttonJson, function (j) {
+                if (buttonJson[j].ActionCode == "action-replace"
+                    || buttonJson[j].ActionName == "刷新") {
+                    isnew = false;
+                    return false;
+                }
+            });
+            if (isnew)
+                buttonJson.push(
+                    { Id: "", ActionId: guid.newGUID(), ActionName: "刷新", ActionCode: "action-replace", Describe: "刷新", ActionHref: "" }
+               );
+            $grid[0].addJSONData(buttonJson);
+        });
+
+
+
+    }
+    /*系统按钮end====================================*/
+
+    /*系统视图being==================================*/
+    var columnJson = "";
+    function getGridView() {
+        var MenuId = $("#Id").val();
+        $.ajax({
+            url: "/System/Menus/GetViewsData?MenuId=" + escape(MenuId),
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                columnJson = data;
+            },
+        });
+        var $grid = $("#gridTable-view");
+        $grid.jqGrid({
+            unwritten: false,
+            url: "/System/Menus/GetViewsData?MenuId=" + escape(MenuId),
+            datatype: "json",
+            height: $(window).height() - 165,
+            width: $(window).width() - 11,
+            colModel: [
+                {
+                    label: "主键", name: "ViewId", hidden: true, formatter: function (cellvalue, options, rowObject) {
+                        if (rowObject.Id == "") return cellvalue;
+                        return rowObject.Id;
+                    }
+                },
+                { label: "主键", name: "Id", index: "Id", hidden: true },
+                { label: "名称", name: "ViewName", index: "ViewName", width: 140, align: "left", sortable: false, },
+                { label: "编号", name: "ViewCode", index: "ViewCode", width: 140, align: "left", sortable: false },
+                { label: "描述", name: "Describe", index: "Describe", width: 500, align: "left", sortable: false }
+            ],
+            rowNum: 1000,
+            rownumbers: true
+        });
+        //新增
+        $("#action-add-view").click(function () {
+            dialogOpen({
+                id: "viewForm",
+                title: '添加视图',
+                url: '/System/Menus/ViewForm?MenuId=' + escape(MenuId),
+                width: "450px",
+                height: "260px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].AcceptClick(function (data) {
+                        columnJson.push(data);
+                        $grid[0].addJSONData(columnJson);
+                    });
+                }
+            });
+        })
+        //编辑
+        $("#action-edit-view").click(function () {
+            var Id = $("#gridTable-view").jqGridRowValue("ViewId");
+            if (checkedRow(Id)) {
+                dialogOpen({
+                    id: "viewForm",
+                    title: '编辑视图',
+                    url: '/System/Menus/ViewForm?Id=' + Id + "&MenuId=" + escape(MenuId),
+                    width: "450px",
+                    height: "260px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].AcceptClick(function (data) {
+                            $.each(columnJson, function (i) {
+                                if (columnJson[i].Id == Id || columnJson[i].ViewId == Id) {
+                                    columnJson[i] = data;
+                                }
+                            });
+                            $grid[0].addJSONData(columnJson);
+                        });
+                    }
+                });
+            }
+        })
+        //删除
+        $("#action-delete-view").click(function () {
+            var Id = $("#gridTable-view").jqGridRowValue("ViewId");
+            if (checkedRow(Id)) {
+                $.each(columnJson, function (i) {
+                    if (columnJson[i].Id == Id || columnJson[i].ViewId == Id) {
+                        columnJson.splice(i, 1);
+
+                        return false;
+                    }
+                });
+                $grid[0].addJSONData(columnJson);
+            }
+        });
+        //视图批量添加
+        $("#action-batch-addview").click(function () {
+            var content = ' <textarea id="viewdatajson"class="form-control" style="height: 165px;width:95%">\
+格式如下：&#13;&#10;\
+[&#13;&#10;\
+{ label: "名称1", name: "编号1", index: "编号1" },&#13;&#10;\
+{ label: "名称2", name: "编号2", index: "编号2" }&#13;&#10;\
+]&#13;&#10;\
+注意：label、name字段必有;且不能存在或重复\
+                </textarea>';
+            dialogContent({
+                title: "批量添加",
+                content: content,
+                width: "400px",
+                height: "260px",
+                callBack: function (iframeId, index) {
+                    try {
+                        var data = top.$("#viewdatajson").val();//格式为jqgrid的列属性
+                        data = data.replace(new RegExp(/( )/g), '')
+                        data = data.replace(new RegExp(/(\s)/g), '')
+
+                        data = data.replace(new RegExp(/({)/g), '{"')
+                        data = data.replace(new RegExp(/(:)/g), '":')
+                        data = data.replace(new RegExp(/(,)/g), ',"')
+                        data = data.replace(new RegExp(/(},")/g), '},')
+                        data = $.parseJSON(data);
+                        $.each(data, function (i) {
+                            var isnew = true;
+                            if (data[i].label == "" || data[i].label == undefined
+                                || data[i].name == "" || data[i].name == undefined) {
+                                return true;
+                            }
+                            $.each(columnJson, function (j) {
+                                if (columnJson[j].ViewCode == data[i].name
+                                    || data[i].label == columnJson[j].ViewName) {
+                                    isnew = false;
+                                    return false;
+                                }
+                            });
+                            if (isnew) {
+                                var guid = (new GUID()).newGUID();
+                                columnJson.push(
+                                    { Id: "", ViewId: guid, ViewName: data[i].label, ViewCode: data[i].name, Describe: data[i].label }
+                                    );
+                            }
+                        });
+
+                        $grid[0].addJSONData(columnJson);
+
+                        parent.layer.close(index);
+
+
+                    }
+                    catch (e) {
+                        alert("数据格式错误！")
+                    }
+                }
+            });
+        });
+
+    }
+    /*系统视图end====================================*/
+
+    //保存表单
+    function AcceptClick() {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls(keyValue);
+        if (postData["ParentId"] == "") {
+            postData["ParentId"] = 0;
+        }
+        postData["MenuActionsJson"] = JSON.stringify(buttonJson);
+        postData["MenuViewsJson"] = JSON.stringify(columnJson);
+        $.SaveForm({
+            url: "/System/Menus/SaveForm?keyValue=" + keyValue,
+            param: postData,
+            loading: "正在保存数据...",
+            success: function () {
+                top.frames[tabiframeId()].$("#gridTable").trigger("reloadGrid");
+                $.currentIframe().GetTree();
+            }
+        })
+    }
+
+
+
+</script>
+<div class="widget-body">
+    <div id="wizard" class="wizard" data-target="#wizard-steps" style="border-left: none; border-top: none; border-right: none;">
+        <ul class="steps">
+            <li data-target="#step-1" class="active"><span class="step">1</span>功能设置<span class="chevron"></span></li>
+            <li data-target="#step-2"><span class="step">2</span>功能权限<span class="chevron"></span></li>
+            <li data-target="#step-3"><span class="step">3</span>功能视图<span class="chevron"></span></li>
+        </ul>
+    </div>
+    <div class="step-content" id="wizard-steps" style="border-left: none; border-bottom: none; border-right: none;">
+        <div class="step-pane active" id="step-1" style="margin-left: 0px; margin-top: 15px; margin-right: 30px;">
+            <input id="Id" type="hidden" value="@ViewBag.Id" />
+            <table class="form">
+                <tr>
+                    <th class="formTitle">编号<font face="宋体">*</font></th>
+                    <td class="formValue">
+                        <input id="MenuCode" type="text" class="form-control" placeholder="请输入编号" isvalid="yes" checkexpession="NotNull" />
+                    </td>
+                    <th class="formTitle">名称<font face="宋体">*</font></th>
+                    <td class="formValue">
+                        <input id="MenuName" type="text" class="form-control" placeholder="请输入名称" isvalid="yes" checkexpession="NotNull" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">上级</th>
+                    <td class="formValue">
+                        <div id="ParentId" type="selectTree" class="ui-select">
+                        </div>
+                    </td>
+                    <th class="formTitle">图标</th>
+                    <td class="formValue">
+                        <input id="MenuIcon" type="text" class="form-control" />
+                        <span class="input-button" onclick="SelectIcon()" title="选取图标">...</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">菜单类型<font face="宋体">*</font></th>
+                    <td class="formValue">
+                        <div id="IsLeaf" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull">
+                            <ul>
+                                <li data-value="false">父菜单</li>
+                                <li data-value="true">叶子菜单</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <th class="formTitle">排序<font face="宋体">*</font></th>
+                    <td class="formValue">
+                        <input id="SortCode" type="text" class="form-control" isvalid="yes" checkexpession="Num" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">地址</th>
+                    <td class="formValue" colspan="3">
+                        <input id="MenuHref" type="text" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle" style="height: 37px;">选项</th>
+                    <td class="formValue">
+                        <div class="checkbox user-select">
+                            <label>
+                                <input id="IsExpand" type="checkbox" />
+                                展开
+                            </label>
+                            <label>
+                                <input id="Status" type="checkbox" checked="checked" />
+                                有效
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle" valign="top" style="padding-top: 4px;">
+                        描述
+                    </th>
+                    <td class="formValue" colspan="3">
+                        <textarea id="Describe" class="form-control" style="height: 70px;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="step-pane" id="step-2" style="margin: 5px;">
+            <div style="height: 40px; line-height: 33px; text-align: right;">
+                <div class="btn-group">
+                    <a id="action-add-button" class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                    <a id="action-edit-button" class="btn btn-default"><i class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
+                    <a id="action-delete-button" class="btn btn-default"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                </div>
+                <div class="btn-group">
+                    <a id="action-copy-button" class="btn btn-default"><i class="fa fa-copy"></i>&nbsp;CRUD生成</a>
+                </div>
+            </div>
+            <table id="gridTable-button"></table>
+        </div>
+        <div class="step-pane" id="step-3" style="margin: 5px;">
+            <div style="height: 40px; line-height: 33px; text-align: right;">
+                <div class="btn-group">
+                    <a id="action-add-view" class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                    <a id="action-edit-view" class="btn btn-default"><i class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
+                    <a id="action-delete-view" class="btn btn-default"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                </div>
+                <div class="btn-group">
+                    <a id="action-batch-addview" class="btn btn-default"><i class="fa fa-sign-in"></i>&nbsp;批量添加</a>
+                </div>
+            </div>
+            <table id="gridTable-view"></table>
+        </div>
+    </div>
+</div>
+<div class="form-button" id="wizard-actions">
+    <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a>
+    <a id="btn_next" disabled class="btn btn-default btn-next">下一步</a>
+    <a id="btn_finish" class="btn btn-success">完成</a>
+</div>

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <!--Jquery start-->
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jquery/JqueryJS")
+    <!--Jquery end-->
+    <!--bootstrap组件start-->
+    @System.Web.Optimization.Styles.Render("~/Content/lib/bootstrap/bootstrapCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/bootstrap/bootstrapJS")
+    <!--bootstrap组件end-->
+    <!--框架必需start-->
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/utils/JS/utilsJS")
+    @System.Web.Optimization.Styles.Render("~/Content/lib/utils/CSS/utilsCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jquery-ui/juiJS")
+    @System.Web.Optimization.Styles.Render("~/Content/lib/jquery-ui/juiCSS")
+    <!--框架必需end-->
+    <!--布局插件-->
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jquery-layout/jquerylayoutJS")
+    <!--日期控件-->
+    @*@System.Web.Optimization.Scripts.Render("~/Content/lib/datepicker/datepickerJS")*@
+    @*@System.Web.Optimization.Styles.Render("~/Content/lib/datetime/datetimeCSS")*@
+    <!--表格-->
+    @System.Web.Optimization.Styles.Render("~/Content/lib/jqgrid/jqgridCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jqgrid/jqgridJS")
+
+    <!--树-->
+    @System.Web.Optimization.Styles.Render("~/Content/lib/tree/treeCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/tree/treeJS")
+    <!--wizard-->
+    @System.Web.Optimization.Styles.Render("~/Content/lib/wizard/wizardCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/wizard/wizardJS")
+    <!--在线编辑器Kinder-->    
+    @System.Web.Optimization.Styles.Render("~/Content/lib/kindeditor-4.1.10/kindeditorCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/kindeditor-4.1.10/kindeditorJS")
+    <!--上传-->
+    
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jqform")
+</head>
+<body>
+    <form id="form1" method="post" enctype="multipart/form-data">
+        @RenderBody()
+        @Html.AntiForgeryToken()
+        <!--隐藏字段-->
+        <div id="hideFild">
+
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "日志列表";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+
+<script>
+    $(function () {
+        InitialPage();
+        GetGrid();
+    });
+    //初始化页面
+    function InitialPage() {
+        //resize重设(表格、树形)宽高
+        $(window).resize(function (e) {
+            window.setTimeout(function () {
+                $('#gridTable').setGridWidth(($('.gridPanel').width()));
+                $("#gridTable").setGridHeight($(window).height() - 220);
+            }, 200);
+            e.stopPropagation();
+        });
+    }
+    //加载表格
+    function GetGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable');
+        $gridTable.jqGrid({
+            url: "/System/BaseData/LogData",
+            datatype: "json",
+            height: $(window).height() - 220,
+            autowidth: true,
+            colModel: [
+                { label: "主键", name: "Id", hidden: true },
+                { label: "日志类型", name: "OperateType", index: "OperateType", width: 60, align: "left" },
+                { label: "操作用户", name: "OperateAccount", index: "OperateAccount", width: 100, align: "left" },
+                  { label: "操作用户ID", name: "OperateUserId", index: "OperateUserId", width: 160, align: "left" },
+                {
+                    label: "访问模块", name: "MenuName", index: "MenuName", width: 160, align: "center"
+                },
+                { label: "访问地址", name: "AccessURL", index: "AccessURL", width: 220, align: "left" },
+                 { label: "IP地址", name: "IPAddress", index: "IPAddress", width: 100, align: "left" },
+                  { label: "访问主机名", name: "Host", index: "Host", width: 100, align: "left" },
+                  { label: "访问浏览器", name: "Browser", index: "Browser", width: 100, align: "left" },
+                  { label: "访问时间", name: "CreatTime", index: "CreatTime", width: 160, align: "left" },
+                   { label: "返回代码", name: "ExecuteResult", index: "Host", width: 60, align: "left" },
+                    { label: "返回信息", name: "ExecuteResultJson", index: "Host", width: 600, align: "left" }
+
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager",
+            sortname: 'CreatTime',
+            sortorder: 'desc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $("#" + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $("#" + this.id).setSelection(selectedRowIndex, false);
+            }
+        });
+        $gridTable.authorizeColModel();
+
+        //查询事件
+        $("#btn_Search").click(function () {
+
+            $gridTable.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_Keyword").val() },
+                page: 1
+            }).trigger('reloadGrid');
+        });
+        //查询回车
+        $('#txt_Keyword').bind('keypress', function (event) {
+            if (event.keyCode == "13") {
+                $('#btn_Search').trigger("click");
+            }
+        });
+    }
+
+</script>
+<div class="titlePanel">
+    <div class="title-search">
+        <table>
+            <tr>
+                <td style="padding-left: 2px;">
+                    <input id="txt_Keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;" />
+                </td>
+                <td style="padding-left: 5px;">
+                    <a id="btn_Search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="action-replace" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+           
+        </div>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridTable"></table>
+    <div id="gridPager"></div>
+</div>
+
+
+

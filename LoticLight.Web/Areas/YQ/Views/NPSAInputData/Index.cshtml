@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "NPSA Input Data";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+    var lstProjects = ViewBag.lstProjects as List<LoticLight.Model.YqProject>;
+}
+@*<link href="~/Content/lib/datepicker/skin/WdatePicker.css" rel="stylesheet" />*@
+<script src="~/Content/lib/datepicker/WdatePicker.js"></script>
+@*<script src="~/Content/lib/datepicker/WdatePicker.min.js"></script>*@
+<script src="~/Content/lib/jqform/jquery.form.min.js"></script>
+<link href="~/Content/lib/FileUpload/css/jquery.fileupload.css" rel="stylesheet" />
+<link href="~/Content/lib/jqSelect2/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/lib/bootstrap/bootstrap-dialog.js"></script>
+<script src="~/Content/lib/jqSelect2/select2.js"></script>
+
+<script src="~/Content/lib/jqform/jquery.form.min.js"></script>
+<script src="@Url.VersionedContent("~/Content/Moulds/yq/NpsaInputData.index.js")"></script>
+
+<style type="text/css">
+  
+
+
+   div.bootstrap-dialog-footer-buttons .btn-close {
+     background: #d9534f;
+     border: 1px solid #d43f3a;
+     color: #fff;
+   }
+   div.bootstrap-dialog-footer-buttons .btn-cancel {
+     background: #d9534f;
+     border: 1px solid #d43f3a;
+     color: #fff;
+   }
+
+
+    div.titlePanelMLine{
+        margin:20px 20px;
+
+    }
+    div.titlePanelMLine .toolbar {
+        margin-top:10px;
+        margin-left:2px;
+    }
+</style>
+
+<div id="tpl-project-batch-change" style="display:none;">
+
+    <form class="form">
+        <div class="form-group">
+            <label >Select a Project to Download Or Delete</label>
+            <select id="Project" type="select2" name="Project" class="form-control ui-select2" style="width:100%" isvalid="yes" checkexpession="NotNull">
+                <option></option>
+                @foreach (var item in lstProjects)
+                {
+                    <option>@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <a class="btn btn-primary" id="btn-download"><i class="fa fa-download"></i> 下载</a><a class="btn btn-primary pull-right" id="btn-del-a-project"><i class="fa fa-remove"></i> 项目完工删除</a>
+            <span id="helpBlock" class="help-block">1.如果只是某个Project替换一些东西,则先下载,修改后再上传文件.</span>
+            <span id="helpBlock" class="help-block">2.如果项目完工,不再需要物料监控,请用右边的"项目完工删除"</span> 
+            <span id="helpBlock" class="help-block">3.本操作可以多次重复操作,以最后一次为准!"</span>
+
+</div>
+    </form>
+     <hr/>
+    <form id="frm-upload" method="post" enctype="multipart/form-data" action="/NPSAInputData/ReplaceProject">
+        <div class="form-group">
+            <div class="row fileupload-buttonbar">
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>选择要替件的Project文件...</span>
+                    <input type="file" id="yzn-file-test" name="file">
+                </span>
+            </div>
+
+            <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                <input type="text" id="txt-file" class="form-control" readonly />
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-upload"></i>
+                    <span>上传替换</span>
+                </button>
+            </div>
+        </div>
+
+        
+    </form>
+</div>
+<div class="titlePanelMLine">
+    <div class="row">
+        <div class="col-md-8">
+            <form id="form-search" class="title-search">
+                <table>
+                    <tr>
+                        <th style="padding-left: 2px;"></th>
+                        <td>
+                            <select class="form-control" name="SearchType">
+                                <option value="-1">Search Type</option>
+                                <option value="1">PN</option>
+                                <option value="2">Project</option>
+                                <option value="3">Location</option>
+                                <option value="4">GSM</option>
+                                <option value="5">Vendor</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input name="SearchKey" type="text" class="form-control" style="width: 100px;" />
+                        </td>
+
+                        <th style="padding-left:2em">API: </th>
+                        <td class="formValue" style="padding-left:5px; line-height:1.2em; width:300px">
+                            <div style="float: left; width: 45%;">
+                                <input name="StartTime" readonly type="text" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" class="form-control input-wdatepicker" onfocus="WdatePicker()">
+                            </div>
+                            <div style="float: left; width: 10%; text-align: center; padding-top:0.5em">至</div>
+                            <div style="float: left; width: 45%;">
+                                <input name="EndTime" readonly type="text" value="@DateTime.Now.AddMonths(3).ToString("yyyy-MM-dd")" class="form-control input-wdatepicker" onfocus="WdatePicker()">
+                            </div>
+                        </td>
+                        <td style="padding-left: 5px;">
+                            <a id="btn_Search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;查询</a>
+                        </td>
+                </table>
+            </form>
+           
+        </div>
+        <div class="col-md-4">
+            <div>
+                <div class="btn-group pull-right">
+
+                    <a id="action-add" class="btn btn-default" onclick="btn_add()"><i class="fa fa-plus"></i>&nbsp;Add</a>
+                    <a id="action-edit" class="btn btn-default" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>
+                    <a id="action-delete" class="btn btn-default" onclick="btn_delete()"><i class="fa fa-trash-o"></i>&nbsp;Del</a>
+
+                </div>
+                <div class="btn-group pull-right" style="margin-right:5px;">
+                    <a id="action-replace" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;ReQuery</a>
+                    @*<a id="action-export" class="btn btn-default" onclick="btn_export()"><i class="fa fa-file-excel-o"></i>&nbsp;Export</a>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top:10px;">
+            <div class="btn-group" style="margin-right:50px;">
+                <a id="action-downCalResult" class="btn btn-default" onclick="btn_cal_result()"><i class="fa fa-download"></i>&nbsp;下载计算结果</a>
+                <a id="action-downCalResult" class="btn btn-default" onclick="btn_publishToGSM()"><i class="fa fa-send-o"></i>&nbsp;发布给GSM数据</a>
+            </div>
+            <div class="btn-group" style="margin-right:50px;">
+                <a id="btn-project-batch-change" class="btn btn-default"><i class="fa fa-bank"></i>&nbsp;Project指量修改</a>
+               
+            </div>
+            <div class="btn-group" style="margin-right:50px;">
+                <a id="btn-down-lead-data" class="btn btn-default"><i class="fa fa-cloud-download"></i>&nbsp;领导要的数据下载</a>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="gridPanel">
+    <table id="gridTable"></table>
+    <div id="gridPager"></div>
+</div>
+
+

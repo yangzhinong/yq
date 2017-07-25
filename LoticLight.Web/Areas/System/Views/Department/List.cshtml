@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<script>
+    $(function () {
+        InitialPage();
+        GetGrid();
+    })
+    //初始化页面
+    function InitialPage() {
+        //resize重设(表格、树形)宽高
+        $(window).resize(function (e) {
+            window.setTimeout(function () {
+                $('#gridTable').setGridWidth(($('.gridPanel').width()));
+                $("#gridTable").setGridHeight($(window).height() - 220);
+            }, 200);
+            e.stopPropagation();
+        });
+    }
+    function GetGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable');
+        $gridTable.jqGrid({
+            url: "/System/Department/GridData",
+            datatype: "json",
+            height: $(window).height() - 220,
+            autowidth: true,
+            colModel: [
+               { label: "Id", name: "Id", hidden: true },
+                { label: "部门名称", name: "DeptName", index: "DeptName", width: 200, align: "left" },
+              { label: "部门编码", name: "code", index: "code", width: 100, align: "left" },               
+                { label: "创建时间", name: "createtime", index: "createtime", width: 200, align: "left" },
+                { label: "创建人", name: "creator", index: "creator", width: 120, align: "left" },
+                 { label: "更新时间", name: "updatetime", index: "createtime", width: 200, align: "left" },
+                { label: "更新人", name: "updator", index: "creator", width: 120, align: "left" }
+
+            ],
+            treeGrid: true,
+            treeGridModel: "nested",
+            ExpandColumn: "code",
+            rowNum: "all",
+            rownumbers: true,
+            onSelectRow: function () {
+                selectedRowIndex = $('#' + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $('#' + this.id).setSelection(selectedRowIndex, false);
+            }
+        });
+        $('#btn_Search').click(function () {
+            $gridTable.jqGrid('setGridParam', {
+                postData: {
+                    keyword: $('#txt_Keyword').val()
+                },
+                page: 1
+            }).trigger('reloadGrid');
+        });
+    }
+    function btn_delete() {
+        var keyValue = $('#gridTable').jqGridRowValue('Id');
+        if (keyValue) {
+            $.RemoveForm({
+                url: '/System/Department/Delete',
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $('#gridTable').trigger('reloadGrid');
+                }
+            })
+        } else {
+            dialogMsg('请选择需要删除的部门!', 0);
+        }
+    }
+    function btn_add() {
+        
+        dialogOpen({
+            id: 'Form',
+            title: '添加部门',
+            url: '/System/Department/Form',
+            width: '500px',
+            height: '400px',
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick();
+            }
+        });
+    };
+
+    function btn_edit() {
+        var keyValue = $('#gridTable').jqGridRowValue('Id');
+        if (checkedRow(keyValue)) {
+            dialogOpen({
+                id: 'Form',
+                title: '修改部门',
+                url: '/System/Department/Form?keyValue=' + keyValue,
+                width: '500px',
+                height: '400px',
+                callBack: function (iframeId) {
+                    top.frames[iframeId].AcceptClick();
+                }
+            });
+        }
+    }
+</script>
+
+<div class="titlePanel">
+    <div class="title-search">
+        <table>
+            <tr>
+                <th>姓名:</th>
+                <td style="padding-left: 2px;">
+                    <input id="txt_Keyword" type="text" class="form-control" placeholder="请输入查找部门名称" style="width: 200px;" />
+                </td>
+                
+                <td style="padding-left: 5px;">
+                    <a id="btn_Search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="action-replace" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+            <a id="action-add" class="btn btn-default" onclick="btn_add()"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            <a id="action-edit" class="btn btn-default" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
+            <a id="action-delete" class="btn btn-default" onclick="btn_delete()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+        </div>
+        <script>$('.toolbar').authorizeButton()</script>
+    </div>
+</div>
+
+<div class="gridPanel">     
+    <table id="gridTable"></table>
+</div>

@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "Content/lib/datepicker/WdatePicker.min.js",
+    "inputFiles": [
+      "Content/lib/datepicker/WdatePicker.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/lib/datepicker/DatePicker.min.js",
+    "inputFiles": [
+      "Content/lib/datepicker/DatePicker.js"
+    ]
+  }
+]

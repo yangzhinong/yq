@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "角色授权";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+
+<script type="text/javascript">
+    var roleId = request('roleId');
+    $(function () {
+        initialPage();
+        GetModuleTree();
+        GetModuleButtonTree();
+       GetModuleColumnTree();
+
+    })
+    //初始化页面
+    function initialPage() {
+       
+        //加载导向
+        $('#wizard').wizard().on('change', function (e, data) {
+            var $finish = $("#btn_finish");
+            var $next = $("#btn_next");
+            if (data.direction == "next") {
+                if (data.step == 1) {
+                    var ModuleId = $("#ModuleTree").getCheckedAllNodes();
+                    for (var i = 0; i < ModuleId.length; i++) {
+                        var $thisid = $("#ModuleButtonTree").find('ul').find('[data-value=' + ModuleId[i] + ']').parent().parent();
+                        $thisid.show();
+                        $thisid.parents('ul').find('.' + ModuleId[i]).parent().show();
+                    }
+                }
+                if (data.step == 2) {
+                    var ModuleId = $("#ModuleTree").getCheckedAllNodes();
+                    for (var i = 0; i < ModuleId.length; i++) {
+                        var $thisid = $("#ModuleColumnTree").find('ul').find('[data-value=' + ModuleId[i] + ']').parent().parent();
+                        $thisid.show();
+                        $thisid.parents('ul').find('.' + ModuleId[i]).parent().show();
+                    }
+                    $finish.removeAttr('disabled');
+                    $next.attr('disabled', 'disabled');
+                }
+                
+            } else {
+                if (data.currentStep == 1 ) {
+                    //退回到第一步时为了保证数据完整，重新获取数据
+                    
+                    GetModuleTree();
+                    GetModuleButtonTree();
+                    GetModuleColumnTree();
+                   // $("#ModuleButtonTree").find(".bbit-tree-root").find("img.bbit-tree-elbow-end-minus").trigger('click')
+                    //$("#ModuleButtonTree").find('.bbit-tree-node-el.bbit-tree-node-expanded').hide();
+                   // $("#ModuleButtonTree").find('.bbit-tree-node-el.bbit-tree-node-collapsed').hide();
+                    // $("#ModuleColumnTree").find('.bbit-tree-node-el').hide();
+                }
+                $finish.attr('disabled', 'disabled');
+                $next.removeAttr('disabled');
+            }
+        });
+
+        buttonOperation();
+    }
+    //获取系统功能
+    function GetModuleTree() {
+        var item = {
+            height: 480,
+            showcheck: true,
+            url: "/System/Role/GetRoleMenus?roleId=" + roleId
+        };
+        $("#ModuleTree").treeview(item);
+    }
+    //获取系统按钮
+    function GetModuleButtonTree() {
+        var item = {
+            height: 480,
+            showcheck: true,
+            url: "/System/Role/GetRoleActions?roleId=" + roleId
+        };
+        $("#ModuleButtonTree").treeview(item);
+        $("#ModuleButtonTree").find('.bbit-tree-node-el.bbit-tree-node-expanded').hide();
+        $("#ModuleButtonTree").find('.bbit-tree-node-el.bbit-tree-node-collapsed').hide();
+    }
+    //获取系统视图
+    function GetModuleColumnTree() {
+        var item = {
+            height: 480,
+            showcheck: true,
+            url: "/System/Role/GetRoleViews?roleId=" + roleId
+        };
+        $("#ModuleColumnTree").treeview(item);
+        $("#ModuleColumnTree").find('.bbit-tree-node-el.bbit-tree-node-expanded').hide();
+        $("#ModuleColumnTree").find('.bbit-tree-node-el.bbit-tree-node-collapsed').hide();
+    }
+
+    //按钮操作（上一步、下一步、完成、关闭）
+    function buttonOperation() {
+        var $last = $("#btn_last");
+        var $next = $("#btn_next");
+        var $finish = $("#btn_finish");
+        //完成提交保存
+        $finish.click(function () {
+            var postData = $("#form1").GetWebControls();
+            postData["roleId"] = roleId;
+            postData["moduleIds"] = String($("#ModuleTree").getCheckedAllNodes());
+            postData["moduleButtonIds"] = String($("#ModuleButtonTree").getCheckedAllNodes());
+            postData["moduleColumnIds"] = String($("#ModuleColumnTree").getCheckedAllNodes());
+
+            $.SaveForm({
+                url: "/System/Role/SaveAuthorize",
+                param: postData,
+                loading: "正在保存角色授权...",
+                success: function () {
+                    top.frames[tabiframeId()].$("#gridTable").trigger("reloadGrid");
+                }
+            })
+        })
+    }
+    //获取数据范围权限选中值、返回Json
+    function GetDataAuthorize() {
+        var dataAuthorize = [];
+        var authorizeType = $("input[name='authorizeType']:checked").val();
+        if (authorizeType == -5) {
+            var selectedData = $("#OrganizeTree").getCheckedAllNodes();
+            for (var i = 0; i < selectedData.length; i++) {
+                var ResourceId = selectedData[i];
+                var IsRead = $("input[name='" + ResourceId + "']:checked").val() == 1 ? 1 : 0;
+                var rowdata = {
+                    ResourceId: ResourceId,
+                    IsRead: IsRead,
+                    AuthorizeType: -5
+                }
+                dataAuthorize.push(rowdata);
+            }
+        } else {
+            var rowdata = {
+                IsRead: 0,
+                AuthorizeType: authorizeType
+            }
+            dataAuthorize.push(rowdata);
+        }
+        return dataAuthorize;
+    }
+</script>
+<div class="widget-body">
+    <div id="wizard" class="wizard" data-target="#wizard-steps" style="border-left: none; border-top: none; border-right: none;">
+        <ul class="steps">
+            <li data-target="#step-1" class="active"><span class="step">1</span>系统功能<span class="chevron"></span></li>
+            <li data-target="#step-2"><span class="step">2</span>系统按钮<span class="chevron"></span></li>
+            <li data-target="#step-3"><span class="step">3</span>系统视图<span class="chevron"></span></li>
+        </ul>
+    </div>
+    <div class="step-content" id="wizard-steps" style="border-left: none; border-bottom: none; border-right: none;">
+        <div class="step-pane active" id="step-1">
+            <div id="ModuleTree" style="margin: 10px;"></div>
+        </div>
+        <div class="step-pane" id="step-2">
+            <div id="ModuleButtonTree" style="margin: 10px;"></div>
+        </div>
+        <div class="step-pane" id="step-3">
+            <div id="ModuleColumnTree" style="margin: 10px;"></div>
+        </div>
+
+    </div>
+</div>
+<div class="form-button" id="wizard-actions">
+    <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a>
+    <a id="btn_next" class="btn btn-default btn-next">下一步</a>
+    <a id="btn_finish" disabled class="btn btn-success">完成</a>
+</div>
+

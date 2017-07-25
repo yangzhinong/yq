@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+
+<div id="div-add" data-monday="@ViewBag.monday" data-friday="@ViewBag.friday" style="display:none;"></div>
+<link href="~/Content/lib/jqSelect2/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/lib/jqSelect2/select2.min.js"></script>
+<script type="text/javascript">
+    //获取url参数
+
+    var keyValue = request('keyValue');
+    $(function () {
+        initControl();
+    })
+    //初始化控件
+    function initControl() {
+        //$('#sel2').select2({
+        //    data: [{ id: 1, text: 'yzn' }, { id: 2, text: 'yq' }, { id: 3, text: 'test' }],
+        //    placeholder: '请选择',
+        //    allowClear: true,
+        //    multiple: true
+        //});
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "/YQ/Week/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    try {
+                        data.Monday = data.Monday.substr(0, 10);
+                        data.Friday = data.Friday.substr(0, 10);
+                    } catch(ex){}
+                    
+                    $("#form1").SetWebControls(data);
+                }
+            });
+        } else {
+            var data = {
+                Monday: $('#div-add').data('monday'),
+                Friday:$('#div-add').data('friday')
+            }
+            $('#form1').SetWebControls(data);
+        }
+
+    }
+    //保存表单
+    function AcceptClick() {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls(keyValue);
+        $.SaveForm({
+            url: "/YQ/Week/SaveForm?keyValue=" + keyValue,
+            param: postData,
+            loading: "正在保存数据...",
+            success: function () {
+                top.frames[tabiframeId()].$("#gridTable").trigger("reloadGrid");
+            }
+        })
+    }
+    function btnTest() {
+        //console.log($('#sel2').select2("data"));
+        console.log($('#sel2').select2('val'));
+        var $sel = $('#sel2').select2();
+        $sel.val(["1", "3"]).trigger("change");
+    }
+</script>
+<div style="margin-left:10px; margin-top:20px; margin-right:30px;">
+    <table class="form">
+        <tr>
+            <td class="formTitle">Desciption<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <input id="Desp" type="text" onblur="" class="form-control" placeholder="week desciption" isvalid="yes" checkexpession="NotNull" maxlength="50" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">Monday<font face="宋体"></font></td>
+            <td class="formValue" colspan="3">
+                <input id="Monday" type="text" onblur="" readonly class="form-control" isvalid="yes" checkexpession="NotNull" maxlength="50" style="background-color:#ddcbcb" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">Friday<font face="宋体"></font></td>
+            <td class="formValue" colspan="3">
+                <input id="Friday" type="text" onblur="" readonly class="form-control" isvalid="yes" checkexpession="NotNull" maxlength="50" style="background-color:#ddcbcb" />
+            </td>
+        </tr>
+
+        @*<tr>
+                <td class="formTitle">select2<font face="宋体">*</font></td>
+                <td class="formValue" colspan="3">
+                    <select id="sel2" style="width:100%" >
+
+                    </select>
+                </td>
+            </tr>*@
+
+        @*<tr>
+                <td class="formTitle"></td>
+                <td class="formValue" colspan="3">
+                    <a class="btn btn-default" href="javascript:void" id="btn-test" onclick="btnTest()">Get Valule</a>
+                </td>
+            </tr>*@
+    </table>
+</div>
+
+
+

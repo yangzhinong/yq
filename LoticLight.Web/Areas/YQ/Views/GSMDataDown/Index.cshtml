@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "WareHouse";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<script src="~/Content/lib/bootstrap-filestyle-1.2.1/src/bootstrap-filestyle.js"></script>
+
+
+<style type="text/css">
+    div.bootstrap-filestyle input[type=text] {
+        height: 31px;
+    }
+</style>
+
+
+<script src="~/Content/lib/jqform/jquery.form.min.js"></script>
+
+<script>
+        function downExcel(url) {
+            var el = document.createElement("a");
+            document.body.appendChild(el);
+            el.href = url; //url 是你得到的连接
+            el.target = '_blank'; //指定在新窗口打开
+            el.click();
+            document.body.removeChild(el);
+        }
+
+        function btn_download(){
+            downExcel("download");
+        }
+
+        $(document).ready(function () {
+            $('#frm-upload-gsm-reply').ajaxForm({
+                url: '/YQ/GSMDataDown/Upload',
+                success: function (data) {
+                    if (data.type == "3") {
+                        dialogAlert(data.message, -1);
+                    } else {
+                        Loading(false);
+                        dialogMsg(data.message, 1);
+                    }
+                    Loading(false);
+                },
+                resetForm: false,
+                dataType: 'json',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    Loading(false);
+                    dialogMsg(errorThrown, -1);
+                },
+                beforeSubmit: function () {
+                    Loading(true, "正在上传文件数据...");
+                },
+                complete: function () {
+                    Loading(false);
+                }
+            });
+        });
+</script>
+
+
+<div style="margin-left:20px; margin-top:20px;">
+    <p>
+        1.请先下载需回复的数据.
+    </p>
+    <p>
+        2.注意填写回复数据时,不要动表格的列顺序或增删列.
+    </p>
+    <p style="margin-top:10px;">
+        <a class="btn btn-primary" href="javascript:void" onclick="btn_download()">下载</a>
+    </p>
+   
+
+
+</div>
+<hr />
+<div style="margin-left:20px; margin-top:20px;">
+    <p>
+        3.请上载回复的数据.
+    </p>
+    <form class="form" id="frm-upload-gsm-reply" enctype="multipart/form-data"  action="/YQ/GSMDataDown/Upload" method="post" style="width:500px;">
+
+        <div class="form-group">
+            <label for="file1" style="font-weight:bold; font-size:14px">回复数据</label>
+            <input type="file" name="file" id="file1" class="filestyle">
+            <p class="help-block">回复数据必须放在第1张工作表中,第1行为标头,数据第2行开始</p>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">提交</button>
+        </div>
+    </form>
+</div>
+

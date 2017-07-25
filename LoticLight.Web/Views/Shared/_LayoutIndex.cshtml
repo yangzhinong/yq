@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <!--Jquery start-->
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jquery/JqueryJS")
+    <!--Jquery end-->
+    <!--bootstrap组件start-->
+    @System.Web.Optimization.Styles.Render("~/Content/Moulds/HomeLTE/CSS/homeLTECSS")
+    @System.Web.Optimization.Styles.Render("~/Content/lib/bootstrap/bootstrapCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/bootstrap/bootstrapJS")
+    <!--bootstrap组件end-->
+    <!--框架必需start-->
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/utils/JS/utilsJS")
+    @System.Web.Optimization.Styles.Render("~/Content/lib/utils/CSS/utilsCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jquery-ui/juiJS")
+    @System.Web.Optimization.Styles.Render("~/Content/lib/jquery-ui/juiCSS")
+    <!--框架必需end-->
+   <!--布局插件-->
+   @System.Web.Optimization.Scripts.Render("~/Content/lib/jquery-layout/jquerylayoutJS")
+    <!--日期控件-->
+    @*@System.Web.Optimization.Styles.Render("~/Content/lib/datetime/datetimeCSS")*@
+    
+    <!--表格-->
+    @System.Web.Optimization.Styles.Render("~/Content/lib/jqgrid/jqgridCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jqgrid/jqgridJS")
+
+  
+    <!--树-->
+    @System.Web.Optimization.Styles.Render("~/Content/lib/tree/treeCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/tree/treeJS")
+  
+    @System.Web.Optimization.Styles.Render("~/Content/lib/datetime/datetimeCSS")
+    
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+         .select2-container {
+            width: 100% !important;
+            padding: 0;
+        }
+
+        .select2-container.select2-container--default.select2-container--open {
+                z-index: 5000;
+            }
+        .poptip {z-index:9000;}
+
+    </style>
+</head>
+<body>
+    @RenderBody()
+    @Html.AntiForgeryToken()
+
+
+</body>
+</html>
+

@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "Project";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<script>
+    $(function () {
+        InitialPage();
+        GetGrid();
+    });
+    //初始化页面
+    function InitialPage() {
+
+        $(window).resize(function (e) {
+            window.setTimeout(function () {
+                $('#gridTable').setGridWidth(($('.gridPanel').width()));
+                $("#gridTable").setGridHeight($(window).height() - 280);
+            }, 200);
+            e.stopPropagation();
+        });
+    }
+    //加载表格
+    function GetGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable');
+        $gridTable.jqGrid({
+            url: "/YQ/Project/GridData",
+            datatype: "json",
+            height: $(window).height() - 280,
+            autowidth: true,
+            colModel: [
+                { label: "Id", name: "Id", index: "Id", hidden: true },
+                { label: "Name", name: "Name", index: "Name", width: 200, align: "left" },
+                { label: "NPSA", name: "NPSA", index: "NPSA", width: 200, align: "left" }
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager",
+            sortname: 'Name',
+            sortorder: 'asc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $("#" + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $("#" + this.id).setSelection(selectedRowIndex, false);
+            }
+        });
+    //    $gridTable.authorizeColModel();
+
+        //查询事件
+        $("#btn_Search").click(function () {
+            $gridTable.jqGrid('setGridParam', {
+                postData: {
+                    keyword: $("#txt_Keyword").val()
+                },
+                page: 1
+            }).trigger('reloadGrid');
+        }
+            );
+        //查询回车
+        $('#txt_Keyword').bind('keypress', function (event) {
+            if (event.keyCode == "13") {
+                $('#btn_Search').trigger("click");
+            }
+        });
+    }
+    //新增
+    function btn_add() {
+        dialogOpen({
+            id: "Form",
+            title: 'Add Project',
+            url: '/YQ/Project/Form',
+            width: "400px",
+            height: "500px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick();
+            }
+        });
+    };
+
+    //编辑
+    function btn_edit() {
+        var keyValue = $("#gridTable").jqGridRowValue("Id");
+        if (checkedRow(keyValue)) {
+            dialogOpen({
+                id: "Form",
+                title: 'Change Project',
+                url: '/YQ/Project/Form?keyValue=' + keyValue,
+                width: "400px",
+                height: "500px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].AcceptClick();
+                }
+            });
+        }
+    }
+    //删除
+    function btn_delete() {
+        var keyValue = $("#gridTable").jqGridRowValue("Id");
+        if (checkedRow(keyValue)) {
+            $.RemoveForm({
+                url: "/YQ/Project/Delete",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#gridTable").trigger("reloadGrid");
+                }
+            })
+        } else {
+            dialogMsg('请选择需要删除的记录！', 0);
+        }
+    }
+
+    function btn_export() {
+        //var load = layer.load("提交中...", 3);
+        var url = "/YQ/Project/export";
+        var el = document.createElement("a");
+        document.body.appendChild(el);
+        el.href = url; //url 是你得到的连接
+        el.target = '_blank'; //指定在新窗口打开
+        el.click();
+        document.body.removeChild(el);
+    }
+</script>
+<div class="titlePanel">
+    <div class="title-search">
+        <table>
+            <tr>
+                <th></th>
+                <td style="padding-left: 2px;">
+                    <input id="txt_Keyword" type="text" class="form-control" style="width: 180px;" />
+                </td>
+                <td style="padding-left: 5px;">
+                    <a id="btn_Search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;查询</a>
+                </td>
+
+        </table>
+    </div>
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="action-replace" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;ReQuery</a>
+            <a id="action-export" class="btn btn-default" onclick="btn_export()"><i class="fa fa-file-excel-o"></i>&nbsp;Export</a>
+        </div>
+        <div class="btn-group">
+
+            <a id="action-add" class="btn btn-default" onclick="btn_add()"><i class="fa fa-plus"></i>&nbsp;Add</a>
+            <a id="action-edit" class="btn btn-default" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>
+            <a id="action-delete" class="btn btn-default" onclick="btn_delete()"><i class="fa fa-trash-o"></i>&nbsp;Del</a>
+
+        </div>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridTable"></table>
+    <div id="gridPager"></div>
+</div>
+
+

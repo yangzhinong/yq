@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "NPSP工作结果";
+    Layout = "~/Views/Shared/_LayoutForm2.cshtml";
+    var lstLocations = ViewBag.lstLocations as List<LoticLight.Model.YqLocation>;
+    var lstProjects = ViewBag.lstProjects as List<LoticLight.Model.YqProject>;
+}
+<link href="~/Content/lib/jqSelect2/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/lib/jqSelect2/select2.min.js"></script>
+
+<script type="text/javascript">
+   
+   
+</script>
+<div style="margin-left:10px; margin-top:20px; margin-right:30px;">
+
+    
+    <table class="form">
+        <tr>
+            <td class="formTitle">Mode<font face="宋体">*</font></td>
+            <td class="formValue">
+               
+            </td>
+            <td class="formTitle">API<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="API" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" maxlength="120" isvalid="yes" checkexpession="NotNull" />
+            </td>
+        </tr>
+        
+    </table>
+</div>
+
+
+

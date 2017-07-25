@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "AssignRoleForm";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+
+<script>
+    var userId = request('keyValue');
+    $(function () {
+        InitialPage();
+        GetMember();
+       // GetTree();
+    });
+    //初始化页面
+    function InitialPage() {
+      
+        $(".center-Panel").height($(window).height() - 40)
+    }
+    //加载树
+  
+    //加载角色
+    function GetMember() {
+        $.ajax({
+            url: "/System/Role/GetRoleListJson?userId=" + userId,
+            type: "get",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                var _html = "";
+                $.each(data, function (i) {
+                    var row = data[i];
+                        var active = "";
+                        if (row.ischeck == 1) {
+                            active = "active";
+                        }
+                        _html += '<div class="card-box ' + row.Id + ' ' + active + '">';
+                        _html += '    <div class="card-box-img">';
+                        _html += '        <img src="/Content/lib/utils/Images/' + 'UserCard03.png' + '" />';
+                        _html += '    </div>';
+                        _html += '    <div id="' + row.Id + '" class="card-box-content">';
+                        _html += '        <p>角色名称：' + row.RoleName + '</p>';
+                        _html += '        ';
+                        _html += '        <p style="overflow:auto;white-space:normal">描&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp述：' + row.Describe + '</p>';
+                        _html += '    </div><i></i>';
+                        _html += '</div>';
+                    
+                });
+               $(".gridPanel").html(_html);
+                $(".card-box").click(function () {
+                    if (!$(this).hasClass("active")) {
+                        $(this).addClass("active")
+                    } else {
+                        $(this).removeClass("active")
+                    }
+                })
+                Loading(false);
+            }, beforeSend: function () {
+                Loading(true);
+            }
+        });
+        //模糊查询用户（注：这个方法是理由jquery查询）
+        $("#txt_TreeKeyword").keyup(function () {
+            var value = $(this).val();
+            if (value != "") {
+                window.setTimeout(function () {
+                    $(".card-box" )
+                     .hide()
+                     .filter(":contains('" + (value) + "')")
+                     .show();
+                }, 200);
+            } else {
+                $(".card-box").show();
+            }
+        }).keyup();
+    }
+    //保存表单
+    function AcceptClick() {
+        var roleIds = [];
+        $('.gridPanel .active .card-box-content').each(function () {
+            roleIds.push($(this).attr('id'));
+        });
+        var postData = $("#form1").GetWebControls();
+        postData["userId"] = userId;
+        postData["roleIds"] = String(roleIds)
+        $.SaveForm({
+            url: "/System/Role/SaveUserRole",
+            param: postData,
+            loading: "正在保存用户角色...",
+            success: function () {
+                top.frames[tabiframeId()].$("#gridTable").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<div class="ui-layout" id="layout" style="height: 100%; width: 100%;">
+  
+        <div class="treesearch">
+            <input id="txt_TreeKeyword" type="text" class="form-control" style="border-top: none;" placeholder="请输入要查询关键字" />
+            <span id="btn_TreeSearch" class="input-query" title="Search"><i class="fa fa-search"></i></span>
+        </div>
+        <div class="center-Panel" style="margin: 0px; border-right: none; border-left: none; border-bottom: none; background-color: #fff; overflow: auto; padding-bottom: 10px;">
+            <div class="gridPanel">
+              
+            </div>
+        </div>
+  
+</div>
+
+

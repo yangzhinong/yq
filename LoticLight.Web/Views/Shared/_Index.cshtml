@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+
+    <!--Jquery start-->
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jquery/JqueryJS")
+    <!--Jquery end-->
+    <!--bootstrap组件start-->
+    @System.Web.Optimization.Styles.Render("~/Content/lib/bootstrap/bootstrapCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/bootstrap/bootstrapJS")
+    <!--bootstrap组件end-->
+    <!--框架必需start-->
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/utils/JS/utilsJS")
+    @System.Web.Optimization.Styles.Render("~/Content/lib/utils/CSS/utilsCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jquery-ui/juiJS")
+    @System.Web.Optimization.Styles.Render("~/Content/lib/jquery-ui/juiCSS")
+    <script src="~/Content/lib/bootstrap/bootstrap-dialog.min.js"></script>
+    <link href="~/Content/lib/jqSelect2/css/select2.min.css" rel="stylesheet" />
+    <script src="~/Content/lib/jqSelect2/select2.min.js"></script>
+    <!--框架必需end-->
+   
+    <!--布局插件-->
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jquery-layout/jquerylayoutJS")
+    <!--日期控件-->
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/datepicker/datepickerJS")
+
+    <!--表格-->
+    @System.Web.Optimization.Styles.Render("~/Content/lib/jqgrid/jqgridCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/jqgrid/jqgridJS")
+
+    <!--树-->
+    @System.Web.Optimization.Styles.Render("~/Content/lib/tree/treeCSS")
+    @System.Web.Optimization.Scripts.Render("~/Content/lib/tree/treeJS")
+
+    @System.Web.Optimization.Styles.Render("~/Content/lib/datetime/datetimeCSS")
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script>
+        
+    </script>
+</head>
+<body>
+    
+    <div>
+        @RenderBody()
+    </div>
+    <div class="modal bootstrap-dialog type-primary fade size-normal in" role="dialog" aria-hidden="false" id="yzn-dlg-bg" style="z-index:500" />
+</body>
+</html>

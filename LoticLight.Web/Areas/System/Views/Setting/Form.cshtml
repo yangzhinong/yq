@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+<script>
+    //获取url参数
+    var keyValue = request('keyValue');
+    $(function () {
+        initControl();
+    })
+    //初始化控件
+    function initControl() {
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "/System/Setting/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data);
+                }
+            });
+        }
+    }
+    //保存表单
+    function AcceptClick() {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls(keyValue);
+        $.SaveForm({
+            url: "/System/Setting/SaveForm?keyValue=" + keyValue,
+            param: postData,
+            loading: "正在保存数据...",
+            success: function () {
+                top.frames[tabiframeId()].$("#gridTable").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<div style="margin-left: 10px; margin-top: 20px; margin-right: 30px;">
+    <table class="form">
+        <tr>
+            <td class="formTitle">设置代码<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="Code" type="text" onblur="" class="form-control" placeholder="请输入设置代码" isvalid="yes" checkexpession="NotNull" maxlength="48" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">值<font face="宋体">*</font></td>
+            <td class="formValue">
+                <textarea id="Value" class="form-control" style="height: 70px;" placeholder="请输入值" isvalid="yes" checkexpession="NotNull" maxlength="48"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">描述<font face="宋体"></font></td>
+            <td class="formValue">
+                <textarea id="Describe" class="form-control" style="height: 70px;" maxlength="248"></textarea>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+

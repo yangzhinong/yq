@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "WareHouse";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<script src="~/Content/lib/jqform/jquery.form.min.js"></script>
+<script src="~/Content/lib/bootstrap-filestyle-1.2.1/src/bootstrap-filestyle.js"></script>
+<script src="~/Content/Moulds/yq/warehouse.js"></script>
+
+<style type="text/css">
+    div.bootstrap-filestyle input[type=text]{
+        height:31px;
+    } 
+</style>
+
+
+    <div style="margin-left:20px; margin-top:20px;">
+        <form class="form" id="frm-warehouse" enctype="multipart/form-data"  action="/YQ/Warehouse/Upload" method="post">
+            <div class="form-group" style="width:600px;">
+                <label for="file1" style="font-weight:bold; font-size:14px">本周库存数据</label>
+                <input type="file" name="file" id="file1" class="filestyle">
+                <p class="help-block">库存数据必须放在第1张工作表中,第1行为标头,数据第2行开始(详见模板(<a target="_blank" href="~/ContentFile/template/Warehouse.xlsx">模板下载</a>).</p>
+            </div>
+            <div class="form-group" style="display:block;">
+                <button class="btn btn-primary" type="submit">提交</button>
+            </div>
+        </form>
+    </div>
+ 

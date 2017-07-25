@@ -1,0 +1,42 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <link href="~/Content/Mould/Login/css/style.css" rel="stylesheet" />
+    <script src="~/Content/lib/jquery/jquery-2.0.3.min.js"></script>
+   @* <script src="~/Content/Moulds/Login/js/cloud.js"></script>*@    
+    <script language="javascript">
+        $(function () {
+            $('.loginbox').css({ 'position': 'absolute', 'left': ($(window).width() - 692) / 2 });
+            $(window).resize(function () {
+                $('.loginbox').css({ 'position': 'absolute', 'left': ($(window).width() - 692) / 2 });
+            })
+        });
+    </script>
+</head>
+<body style="background-color: rgb(28, 119, 172); ">
+
+    <div id="mainBody">
+        @*<div id="cloud1" class="cloud" style="background-position: 642.5px 100px;"></div>
+        <div id="cloud2" class="cloud" style="background-position: 175px 460px;"></div>*@
+    </div>
+    <div class="logintop">
+        <span></span>
+    </div>
+    <form action="/Login/Login" autocomplete="on" method="post">
+        <div class="loginbody">
+            <span class="systemlogo">
+                
+            </span>
+            <div class="loginbox" style="position: absolute; left: 337px;">
+                <ul>
+                    <li><input name="username" id="username" type="text" class="loginuser" /></li>
+                    <li><input name="password" id="password" type="password" class="loginpwd" /></li>
+                    <li><input name="" type="submit" class="loginbtn" value="登录" />
+                </ul>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

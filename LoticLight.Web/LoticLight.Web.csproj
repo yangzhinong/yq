@@ -1,0 +1,977 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{756FFB85-218F-4BFA-B06B-43EF6D1E3BC2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LoticLight.Web</RootNamespace>
+    <AssemblyName>LoticLight.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Aspose.Cells">
+      <HintPath>D:\zounds\DLL\other\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelTool">
+      <HintPath>D:\zounds\DLL\ExcelTool.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\zounds\DLL\other\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>D:\leadgood\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\jq\jquery-1.8.3.min.js" />
+    <Content Include="Content\lib\boostraptable\bootstrap-table-locale-all.js" />
+    <Content Include="Content\lib\boostraptable\bootstrap-table-locale-all.min.js" />
+    <Content Include="Content\lib\boostraptable\bootstrap-table.css" />
+    <Content Include="Content\lib\boostraptable\bootstrap-table.js" />
+    <Content Include="Content\lib\boostraptable\bootstrap-table.min.css" />
+    <Content Include="Content\lib\boostraptable\bootstrap-table.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\accent-neutralise\bootstrap-table-accent-neutralise.js" />
+    <Content Include="Content\lib\boostraptable\extensions\accent-neutralise\bootstrap-table-accent-neutralise.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\angular\bootstrap-table-angular.js" />
+    <Content Include="Content\lib\boostraptable\extensions\angular\bootstrap-table-angular.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\cookie\bootstrap-table-cookie.js" />
+    <Content Include="Content\lib\boostraptable\extensions\cookie\bootstrap-table-cookie.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\editable\bootstrap-table-editable.js" />
+    <Content Include="Content\lib\boostraptable\extensions\editable\bootstrap-table-editable.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\export\bootstrap-table-export.js" />
+    <Content Include="Content\lib\boostraptable\extensions\export\bootstrap-table-export.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\filter-control\bootstrap-table-filter-control.js" />
+    <Content Include="Content\lib\boostraptable\extensions\filter-control\bootstrap-table-filter-control.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\filter\bootstrap-table-filter.js" />
+    <Content Include="Content\lib\boostraptable\extensions\filter\bootstrap-table-filter.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\flat-json\bootstrap-table-flat-json.js" />
+    <Content Include="Content\lib\boostraptable\extensions\flat-json\bootstrap-table-flat-json.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\group-by-v2\bootstrap-table-group-by.css" />
+    <Content Include="Content\lib\boostraptable\extensions\group-by-v2\bootstrap-table-group-by.js" />
+    <Content Include="Content\lib\boostraptable\extensions\group-by-v2\bootstrap-table-group-by.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\group-by\bootstrap-table-group-by.css" />
+    <Content Include="Content\lib\boostraptable\extensions\group-by\bootstrap-table-group-by.js" />
+    <Content Include="Content\lib\boostraptable\extensions\group-by\bootstrap-table-group-by.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\key-events\bootstrap-table-key-events.js" />
+    <Content Include="Content\lib\boostraptable\extensions\key-events\bootstrap-table-key-events.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\mobile\bootstrap-table-mobile.js" />
+    <Content Include="Content\lib\boostraptable\extensions\mobile\bootstrap-table-mobile.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\multiple-search\bootstrap-table-multiple-search.js" />
+    <Content Include="Content\lib\boostraptable\extensions\multiple-search\bootstrap-table-multiple-search.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\multiple-sort\bootstrap-table-multiple-sort.js" />
+    <Content Include="Content\lib\boostraptable\extensions\multiple-sort\bootstrap-table-multiple-sort.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\natural-sorting\bootstrap-table-natural-sorting.js" />
+    <Content Include="Content\lib\boostraptable\extensions\natural-sorting\bootstrap-table-natural-sorting.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\reorder-columns\bootstrap-table-reorder-columns.js" />
+    <Content Include="Content\lib\boostraptable\extensions\reorder-columns\bootstrap-table-reorder-columns.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\reorder-rows\bootstrap-table-reorder-rows.css" />
+    <Content Include="Content\lib\boostraptable\extensions\reorder-rows\bootstrap-table-reorder-rows.js" />
+    <Content Include="Content\lib\boostraptable\extensions\reorder-rows\bootstrap-table-reorder-rows.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\resizable\bootstrap-table-resizable.js" />
+    <Content Include="Content\lib\boostraptable\extensions\resizable\bootstrap-table-resizable.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\sticky-header\bootstrap-table-sticky-header.css" />
+    <Content Include="Content\lib\boostraptable\extensions\sticky-header\bootstrap-table-sticky-header.js" />
+    <Content Include="Content\lib\boostraptable\extensions\sticky-header\bootstrap-table-sticky-header.min.js" />
+    <Content Include="Content\lib\boostraptable\extensions\toolbar\bootstrap-table-toolbar.js" />
+    <Content Include="Content\lib\boostraptable\extensions\toolbar\bootstrap-table-toolbar.min.js" />
+    <Content Include="Content\lib\boostraptable\locale\bootstrap-table-zh-CN.min.js" />
+    <Content Include="Content\lib\boostraptable\tableExport.min.js" />
+    <Content Include="Content\lib\bootstrap-filestyle-1.2.1\src\bootstrap-filestyle.js" />
+    <Content Include="Content\lib\bootstrap-filestyle-1.2.1\src\bootstrap-filestyle.min.js" />
+    <Content Include="Content\lib\bootstrap-suggest\bootstrap-suggest.es5.js">
+      <DependentUpon>bootstrap-suggest.js</DependentUpon>
+    </Content>
+    <Content Include="Content\lib\bootstrap-suggest\bootstrap-suggest.es5.min.js">
+      <DependentUpon>bootstrap-suggest.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Content\lib\bootstrap-suggest\bootstrap-suggest.js" />
+    <Content Include="Content\lib\bootstrap\Bootstrap-dialog-cn.js" />
+    <Content Include="Content\lib\bootstrap\bootstrap-dialog.js" />
+    <Content Include="Content\lib\bootstrap\bootstrap-dialog.min.js" />
+    <Content Include="Content\lib\charts\Chart.js" />
+    <Content Include="Content\lib\charts\Chart.min.js" />
+    <Content Include="Content\lib\datepicker\DatePicker.min.js">
+      <DependentUpon>DatePicker.js</DependentUpon>
+    </Content>
+    <Content Include="Content\lib\datepicker\WdatePicker.min.js">
+      <DependentUpon>WdatePicker.js</DependentUpon>
+    </Content>
+    <Content Include="Content\lib\FileUpload\.gitignore" />
+    <Content Include="Content\lib\FileUpload\ajaxfileupload.js" />
+    <Content Include="Content\lib\FileUpload\angularjs.html" />
+    <Content Include="Content\lib\FileUpload\basic-plus.html" />
+    <Content Include="Content\lib\FileUpload\basic.html" />
+    <Content Include="Content\lib\FileUpload\bower-version-update.js" />
+    <Content Include="Content\lib\FileUpload\cors\postmessage.html" />
+    <Content Include="Content\lib\FileUpload\cors\result.html" />
+    <Content Include="Content\lib\FileUpload\css\demo-ie8.css" />
+    <Content Include="Content\lib\FileUpload\css\demo.css" />
+    <Content Include="Content\lib\FileUpload\css\jquery.fileupload-noscript.css" />
+    <Content Include="Content\lib\FileUpload\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Content\lib\FileUpload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\lib\FileUpload\css\jquery.fileupload.css" />
+    <Content Include="Content\lib\FileUpload\css\style.css" />
+    <Content Include="Content\lib\FileUpload\fileUploadBeatutify.css" />
+    <Content Include="Content\lib\FileUpload\img\loading.gif" />
+    <Content Include="Content\lib\FileUpload\img\progressbar.gif" />
+    <Content Include="Content\lib\FileUpload\index.html" />
+    <Content Include="Content\lib\FileUpload\jquery-ui.html" />
+    <Content Include="Content\lib\FileUpload\js\app.js" />
+    <Content Include="Content\lib\FileUpload\js\cors\jquery.postmessage-transport.js" />
+    <Content Include="Content\lib\FileUpload\js\cors\jquery.xdr-transport.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.fileupload-angular.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.fileupload-audio.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.fileupload-image.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.fileupload-process.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.fileupload-ui.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.fileupload-validate.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.fileupload-video.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.fileupload.js" />
+    <Content Include="Content\lib\FileUpload\js\jquery.iframe-transport.js" />
+    <Content Include="Content\lib\FileUpload\js\main.js" />
+    <Content Include="Content\lib\FileUpload\js\vendor\jquery.ui.widget.js" />
+    <Content Include="Content\lib\FileUpload\server\gae-go\static\favicon.ico" />
+    <Content Include="Content\lib\FileUpload\server\gae-go\static\robots.txt" />
+    <Content Include="Content\lib\FileUpload\server\gae-python\static\favicon.ico" />
+    <Content Include="Content\lib\FileUpload\server\gae-python\static\robots.txt" />
+    <Content Include="Content\lib\FileUpload\server\php\files\.gitignore" />
+    <Content Include="Content\lib\FileUpload\test\index.html" />
+    <Content Include="Content\lib\FileUpload\test\test.js" />
+    <Content Include="Content\lib\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\lib\jqform\jquery.form.min.js" />
+    <Content Include="Content\lib\jqSelect2\css\select2.css" />
+    <Content Include="Content\lib\jqSelect2\css\select2.min.css" />
+    <Content Include="Content\lib\jqSelect2\select2.full.js" />
+    <Content Include="Content\lib\jqSelect2\select2.full.min.js" />
+    <Content Include="Content\lib\jqSelect2\select2.js" />
+    <Content Include="Content\lib\jqSelect2\select2.min.js" />
+    <Content Include="Content\lib\jquery\jquery-1.8.2.min.js" />
+    <Content Include="Content\lib\Kalendae-master\build\arrows.png" />
+    <Content Include="Content\lib\Kalendae-master\build\close.png" />
+    <Content Include="Content\lib\Kalendae-master\build\kalendae.css" />
+    <Content Include="Content\lib\Kalendae-master\build\kalendae.js" />
+    <Content Include="Content\lib\Kalendae-master\build\kalendae.min.js" />
+    <Content Include="Content\lib\Kalendae-master\build\kalendae.standalone.js" />
+    <Content Include="Content\lib\Kalendae-master\build\kalendae.standalone.min.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\kindeditor-all-min.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\kindeditor-all.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\kindeditor-min.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\kindeditor.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\lang\ar.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\lang\en.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\lang\ko.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\lang\zh_CN.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\lang\zh_TW.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\license.txt" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\anchor\anchor.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\autoheight\autoheight.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\baidumap\baidumap.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\baidumap\index.html" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\baidumap\map.html" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\clearhtml\clearhtml.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\code\code.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\code\prettify.css" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\code\prettify.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\emoticons.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\0.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\1.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\10.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\100.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\101.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\102.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\103.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\104.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\105.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\106.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\107.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\108.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\109.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\11.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\110.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\111.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\112.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\113.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\114.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\115.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\116.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\117.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\118.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\119.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\12.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\120.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\121.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\122.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\123.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\124.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\125.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\126.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\127.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\128.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\129.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\13.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\130.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\131.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\132.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\133.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\134.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\14.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\15.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\16.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\17.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\18.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\19.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\2.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\20.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\21.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\22.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\23.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\24.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\25.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\26.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\27.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\28.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\29.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\3.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\30.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\31.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\32.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\33.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\34.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\35.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\36.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\37.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\38.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\39.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\4.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\40.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\41.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\42.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\43.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\44.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\45.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\46.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\47.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\48.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\49.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\5.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\50.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\51.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\52.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\53.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\54.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\55.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\56.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\57.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\58.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\59.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\6.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\60.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\61.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\62.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\63.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\64.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\65.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\66.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\67.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\68.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\69.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\7.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\70.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\71.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\72.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\73.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\74.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\75.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\76.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\77.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\78.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\79.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\8.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\80.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\81.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\82.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\83.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\84.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\85.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\86.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\87.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\88.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\89.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\9.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\90.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\91.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\92.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\93.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\94.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\95.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\96.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\97.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\98.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\99.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\emoticons\images\static.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\filemanager\filemanager.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\filemanager\images\file-16.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\filemanager\images\file-64.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\filemanager\images\folder-16.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\filemanager\images\folder-64.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\filemanager\images\go-up.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\flash\flash.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\image\image.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\image\images\align_left.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\image\images\align_right.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\image\images\align_top.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\image\images\refresh.png" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\insertfile\insertfile.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\lineheight\lineheight.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\link\link.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\map\map.html" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\map\map.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\media\media.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\multiimage\images\image.png" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\multiimage\images\select-files-en.png" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\multiimage\images\select-files-zh_CN.png" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\multiimage\images\swfupload.swf" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\multiimage\multiimage.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\pagebreak\pagebreak.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\plainpaste\plainpaste.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\preview\preview.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\quickformat\quickformat.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\table\table.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\template\html\1.html" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\template\html\2.html" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\template\html\3.html" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\template\template.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\plugins\wordpaste\wordpaste.js" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\common\anchor.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\common\blank.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\common\flash.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\common\loading.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\common\media.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\common\rm.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\default\background.png" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\default\default.css" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\default\default.png" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\qq\editor.gif" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\qq\qq.css" />
+    <Content Include="Content\lib\kindeditor-4.1.10\themes\simple\simple.css" />
+    <Content Include="Content\lib\uploadify\jquery.uploadify.js" />
+    <Content Include="Content\lib\uploadify\jquery.uploadify.min.js" />
+    <Content Include="Content\lib\uploadify\uploadify-cancel.png" />
+    <Content Include="Content\lib\uploadify\uploadify.css" />
+    <Content Include="Content\lib\uploadify\uploadify.swf" />
+    <Content Include="Content\lib\utils\Images\404_r1_c2.png" />
+    <Content Include="Content\lib\utils\Images\80_1.png" />
+    <Content Include="Content\lib\utils\Images\a2.png" />
+    <Content Include="Content\lib\utils\Images\accept.png" />
+    <Content Include="Content\lib\utils\Images\ajax-loader.gif" />
+    <Content Include="Content\lib\utils\Images\arrow.png" />
+    <Content Include="Content\lib\utils\Images\arrow1.png" />
+    <Content Include="Content\lib\utils\Images\black_arrow_8.png" />
+    <Content Include="Content\lib\utils\Images\button_pm_close.png" />
+    <Content Include="Content\lib\utils\Images\datepicker_icon.png" />
+    <Content Include="Content\lib\utils\Images\duihao_03.png" />
+    <Content Include="Content\lib\utils\Images\filetype\apk.png" />
+    <Content Include="Content\lib\utils\Images\filetype\avi.png" />
+    <Content Include="Content\lib\utils\Images\filetype\bmp.png" />
+    <Content Include="Content\lib\utils\Images\filetype\cab.png" />
+    <Content Include="Content\lib\utils\Images\filetype\cs.png" />
+    <Content Include="Content\lib\utils\Images\filetype\doc.png" />
+    <Content Include="Content\lib\utils\Images\filetype\docx.png" />
+    <Content Include="Content\lib\utils\Images\filetype\file.png" />
+    <Content Include="Content\lib\utils\Images\filetype\folder.png" />
+    <Content Include="Content\lib\utils\Images\filetype\gif.png" />
+    <Content Include="Content\lib\utils\Images\filetype\htm.png" />
+    <Content Include="Content\lib\utils\Images\filetype\html.png" />
+    <Content Include="Content\lib\utils\Images\filetype\ico.png" />
+    <Content Include="Content\lib\utils\Images\filetype\java.png" />
+    <Content Include="Content\lib\utils\Images\filetype\jpeg.png" />
+    <Content Include="Content\lib\utils\Images\filetype\jpg.png" />
+    <Content Include="Content\lib\utils\Images\filetype\log.png" />
+    <Content Include="Content\lib\utils\Images\filetype\mp3.png" />
+    <Content Include="Content\lib\utils\Images\filetype\mp4.png" />
+    <Content Include="Content\lib\utils\Images\filetype\pdf.png" />
+    <Content Include="Content\lib\utils\Images\filetype\png.png" />
+    <Content Include="Content\lib\utils\Images\filetype\ppt.png" />
+    <Content Include="Content\lib\utils\Images\filetype\pptx.png" />
+    <Content Include="Content\lib\utils\Images\filetype\psd.png" />
+    <Content Include="Content\lib\utils\Images\filetype\rar.png" />
+    <Content Include="Content\lib\utils\Images\filetype\Scheme.png" />
+    <Content Include="Content\lib\utils\Images\filetype\swf.png" />
+    <Content Include="Content\lib\utils\Images\filetype\txt.png" />
+    <Content Include="Content\lib\utils\Images\filetype\xls.png" />
+    <Content Include="Content\lib\utils\Images\filetype\xlsx.png" />
+    <Content Include="Content\lib\utils\Images\filetype\xml.png" />
+    <Content Include="Content\lib\utils\Images\filetype\zip.png" />
+    <Content Include="Content\lib\utils\Images\file_arrow.png" />
+    <Content Include="Content\lib\utils\Images\head\avatar.png" />
+    <Content Include="Content\lib\utils\Images\head\avatar04.png" />
+    <Content Include="Content\lib\utils\Images\head\avatar2.png" />
+    <Content Include="Content\lib\utils\Images\head\avatar3.png" />
+    <Content Include="Content\lib\utils\Images\head\avatar5.png" />
+    <Content Include="Content\lib\utils\Images\head\loginlogo.png" />
+    <Content Include="Content\lib\utils\Images\head\photo1.png" />
+    <Content Include="Content\lib\utils\Images\head\photo2.png" />
+    <Content Include="Content\lib\utils\Images\head\photo3.jpg" />
+    <Content Include="Content\lib\utils\Images\head\photo4.jpg" />
+    <Content Include="Content\lib\utils\Images\head\user1-128x128.jpg" />
+    <Content Include="Content\lib\utils\Images\head\user2-160x160.jpg" />
+    <Content Include="Content\lib\utils\Images\head\user3-128x128.jpg" />
+    <Content Include="Content\lib\utils\Images\head\user4-128x128.jpg" />
+    <Content Include="Content\lib\utils\Images\head\user5-128x128.jpg" />
+    <Content Include="Content\lib\utils\Images\head\user6-128x128.jpg" />
+    <Content Include="Content\lib\utils\Images\head\user7-128x128.jpg" />
+    <Content Include="Content\lib\utils\Images\head\user8-128x128.jpg" />
+    <Content Include="Content\lib\utils\Images\icon-select.gif" />
+    <Content Include="Content\lib\utils\Images\icon-webappDesigner.png" />
+    <Content Include="Content\lib\utils\Images\icon_app_add.png" />
+    <Content Include="Content\lib\utils\Images\icon_v_b_e.png" />
+    <Content Include="Content\lib\utils\Images\iphone-skin.png" />
+    <Content Include="Content\lib\utils\Images\large_tiles.png" />
+    <Content Include="Content\lib\utils\Images\line.png" />
+    <Content Include="Content\lib\utils\Images\loading1.gif" />
+    <Content Include="Content\lib\utils\Images\loginlogo.png" />
+    <Content Include="Content\lib\utils\Images\logo-headere47d5.png" />
+    <Content Include="Content\lib\utils\Images\micon.png" />
+    <Content Include="Content\lib\utils\Images\no_data.png" />
+    <Content Include="Content\lib\utils\Images\no_query.png" />
+    <Content Include="Content\lib\utils\Images\off-line.png" />
+    <Content Include="Content\lib\utils\Images\on-line.png" />
+    <Content Include="Content\lib\utils\Images\pagination_icons.png" />
+    <Content Include="Content\lib\utils\Images\splitLine_bg.gif" />
+    <Content Include="Content\lib\utils\Images\table_guide.png" />
+    <Content Include="Content\lib\utils\Images\ui_close.png" />
+    <Content Include="Content\lib\utils\Images\UserCard01.png" />
+    <Content Include="Content\lib\utils\Images\UserCard02.png" />
+    <Content Include="Content\lib\utils\Images\UserCard03.png" />
+    <Content Include="Content\lib\utils\Images\validatebox_warning.png" />
+    <Content Include="Content\lib\utils\Images\video\5103.wav" />
+    <Content Include="Content\lib\utils\Images\view_grid.png" />
+    <Content Include="Content\lib\utils\JS\validator.js" />
+    <Content Include="Content\lib\wizard\wizard.css" />
+    <Content Include="Content\lib\wizard\wizard.js" />
+    <Content Include="Content\Moulds\HomeLTE\bootstrap.min.js" />
+    <Content Include="Content\Moulds\HomeLTE\css\bootstrap.min.css" />
+    <Content Include="Content\Moulds\HomeLTE\css\font-awesome.min.css" />
+    <Content Include="Content\Moulds\HomeLTE\css\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Moulds\HomeLTE\css\index.css" />
+    <Content Include="Content\Moulds\HomeLTE\css\learun-ui.css" />
+    <Content Include="Content\Moulds\HomeLTE\css\skins\_all-skins.css" />
+    <Content Include="Content\Moulds\HomeLTE\img\ajax-loader.gif" />
+    <Content Include="Content\Moulds\HomeLTE\img\loading.gif" />
+    <Content Include="Content\Moulds\HomeLTE\img\user2-160x160.jpg" />
+    <Content Include="Content\Moulds\HomeLTE\index.js" />
+    <Content Include="Content\Moulds\Home\CSS\animate.css" />
+    <Content Include="Content\Moulds\Home\CSS\index.css" />
+    <Content Include="Content\Moulds\Home\CSS\Login.css" />
+    <Content Include="Content\Moulds\Home\img\ajax-loader.gif" />
+    <Content Include="Content\Moulds\Home\img\arrow1.png" />
+    <Content Include="Content\Moulds\Home\img\bg.jpg" />
+    <Content Include="Content\Moulds\Home\JS\main.js" />
+    <Content Include="Content\lib\bootstrap\bootstrap.extension.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\lib\datepicker\calendar.js" />
+    <Content Include="Content\lib\datepicker\DatePicker.js" />
+    <Content Include="Content\lib\datepicker\lang\en.js" />
+    <Content Include="Content\lib\datepicker\lang\zh-cn.js" />
+    <Content Include="Content\lib\datepicker\lang\zh-tw.js" />
+    <Content Include="Content\lib\datepicker\skin\datePicker.gif" />
+    <Content Include="Content\lib\datepicker\skin\datePicker.png" />
+    <Content Include="Content\lib\datepicker\skin\default\datepicker-dev.css" />
+    <Content Include="Content\lib\datepicker\skin\default\datepicker.css" />
+    <Content Include="Content\lib\datepicker\skin\default\img.gif" />
+    <Content Include="Content\lib\datepicker\skin\WdatePicker.css" />
+    <Content Include="Content\lib\datepicker\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\lib\datepicker\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\lib\datepicker\skin\whyGreen\img.gif" />
+    <Content Include="Content\lib\datepicker\WdatePicker.js" />
+    <Content Include="Content\lib\datepicker\开发包\lang\en.js" />
+    <Content Include="Content\lib\datepicker\开发包\lang\zh-cn.js" />
+    <Content Include="Content\lib\datepicker\开发包\lang\zh-tw.js" />
+    <Content Include="Content\lib\datepicker\开发包\readme.txt" />
+    <Content Include="Content\lib\datepicker\开发包\skin\datePicker.gif" />
+    <Content Include="Content\lib\datepicker\开发包\skin\datePicker.png" />
+    <Content Include="Content\lib\datepicker\开发包\skin\default\datepicker.css" />
+    <Content Include="Content\lib\datepicker\开发包\skin\default\img.gif" />
+    <Content Include="Content\lib\datepicker\开发包\skin\WdatePicker.css" />
+    <Content Include="Content\lib\datepicker\开发包\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\lib\datepicker\开发包\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\lib\datepicker\开发包\skin\whyGreen\img.gif" />
+    <Content Include="Content\lib\datetime\moment.min.js" />
+    <Content Include="Content\lib\datetime\pikaday.css" />
+    <Content Include="Content\lib\datetime\pikaday.js" />
+    <Content Include="Content\lib\dialog\default\icon-ext.png" />
+    <Content Include="Content\lib\dialog\default\icon.png" />
+    <Content Include="Content\lib\dialog\default\loading-0.gif" />
+    <Content Include="Content\lib\dialog\default\loading-1.gif" />
+    <Content Include="Content\lib\dialog\default\loading-2.gif" />
+    <Content Include="Content\lib\dialog\default\sprite_main_png.png" />
+    <Content Include="Content\lib\dialog\dialog.css" />
+    <Content Include="Content\lib\dialog\dialog.js" />
+    <Content Include="Content\lib\jqgrid\grid.locale-cn.js" />
+    <Content Include="Content\lib\jqgrid\jqgrid.css" />
+    <Content Include="Content\lib\jqgrid\jqgrid.js" />
+    <Content Include="Content\lib\jqgrid\jqgrid.min.js" />
+    <Content Include="Content\lib\jquery-ui\images\calendar.gif" />
+    <Content Include="Content\lib\jquery-ui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\lib\jquery-ui\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\lib\jquery-ui\jquery-ui-1.11.4.js" />
+    <Content Include="Content\lib\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Content\lib\jquery-layout\jquery.layout.js" />
+    <Content Include="Content\lib\tree\images\icons\add.png" />
+    <Content Include="Content\lib\tree\images\icons\addStep.gif" />
+    <Content Include="Content\lib\tree\images\icons\addStep_dsbl.gif" />
+    <Content Include="Content\lib\tree\images\icons\btn-arrow.gif" />
+    <Content Include="Content\lib\tree\images\icons\Btn.Close.gif" />
+    <Content Include="Content\lib\tree\images\icons\Btn.Refresh.gif" />
+    <Content Include="Content\lib\tree\images\icons\cal.gif" />
+    <Content Include="Content\lib\tree\images\icons\checkbox_0.gif" />
+    <Content Include="Content\lib\tree\images\icons\checkbox_0.png" />
+    <Content Include="Content\lib\tree\images\icons\checkbox_1.gif" />
+    <Content Include="Content\lib\tree\images\icons\checkbox_1.png" />
+    <Content Include="Content\lib\tree\images\icons\checkbox_2.gif" />
+    <Content Include="Content\lib\tree\images\icons\checkbox_2.png" />
+    <Content Include="Content\lib\tree\images\icons\circle_animation.gif" />
+    <Content Include="Content\lib\tree\images\icons\delete.png" />
+    <Content Include="Content\lib\tree\images\icons\delItem.gif" />
+    <Content Include="Content\lib\tree\images\icons\delItem_dsbl.gif" />
+    <Content Include="Content\lib\tree\images\icons\edit.png" />
+    <Content Include="Content\lib\tree\images\icons\folder_close.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico1.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico2.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico3.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico4-1-1.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico4-1.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico4-2.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico4-3.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico4-4.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico4.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico5.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico6-1.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico6-2.gif" />
+    <Content Include="Content\lib\tree\images\icons\ico6.gif" />
+    <Content Include="Content\lib\tree\images\icons\indicator.gif" />
+    <Content Include="Content\lib\tree\images\icons\information.png" />
+    <Content Include="Content\lib\tree\images\icons\Item.Add.gif" />
+    <Content Include="Content\lib\tree\images\icons\Item.Delete.gif" />
+    <Content Include="Content\lib\tree\images\icons\Item.Edit.gif" />
+    <Content Include="Content\lib\tree\images\icons\Item.Input.gif" />
+    <Content Include="Content\lib\tree\images\icons\Item.Save.gif" />
+    <Content Include="Content\lib\tree\images\icons\Item.Search.gif" />
+    <Content Include="Content\lib\tree\images\icons\none.gif" />
+    <Content Include="Content\lib\tree\images\icons\note.gif" />
+    <Content Include="Content\lib\tree\images\icons\rowdelete.png" />
+    <Content Include="Content\lib\tree\images\icons\s.gif" />
+    <Content Include="Content\lib\tree\images\icons\table_refresh.png" />
+    <Content Include="Content\lib\tree\images\icons\view.png" />
+    <Content Include="Content\lib\tree\images\tree\arrows.gif" />
+    <Content Include="Content\lib\tree\images\tree\cbs.gif" />
+    <Content Include="Content\lib\tree\images\tree\drop-yes.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-end-minus-nl.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-end-minus.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-end-plus-nl.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-end-plus.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-end.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-line.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-minus-nl.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-minus.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-plus-nl.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow-plus.gif" />
+    <Content Include="Content\lib\tree\images\tree\elbow.gif" />
+    <Content Include="Content\lib\tree\images\tree\folder-open.gif" />
+    <Content Include="Content\lib\tree\images\tree\folder.gif" />
+    <Content Include="Content\lib\tree\images\tree\leaf.gif" />
+    <Content Include="Content\lib\tree\images\tree\loading.gif" />
+    <Content Include="Content\lib\tree\tree.css" />
+    <Content Include="Content\lib\tree\tree.js" />
+    <Content Include="Content\lib\utils\CSS\font-awesome.css" />
+    <Content Include="Content\lib\utils\Images\loading.gif" />
+    <Content Include="Content\Moulds\Home\img\tab_close.png" />
+    <Content Include="Content\lib\cookie\jquery.cookie.js" />
+    <Content Include="Content\lib\jquery\jquery-2.0.3.min.js" />
+    <Content Include="Content\lib\utils\CSS\learun-applayout.css" />
+    <Content Include="Content\lib\utils\CSS\learun-bill.css" />
+    <Content Include="Content\lib\utils\CSS\learun-ckbox-radio.css" />
+    <Content Include="Content\lib\utils\CSS\learun-flow.css" />
+    <Content Include="Content\lib\utils\CSS\learun-im.css" />
+    <Content Include="Content\lib\utils\CSS\learun-login.css" />
+    <Content Include="Content\lib\utils\CSS\learun-report.css" />
+    <Content Include="Content\lib\utils\CSS\learun-ui.css" />
+    <Content Include="Content\lib\utils\CSS\learun-webApp.css" />
+    <Content Include="Content\lib\utils\JS\learun-applayout.js" />
+    <Content Include="Content\lib\utils\JS\learun-clientdata.js" />
+    <Content Include="Content\lib\utils\JS\learun-flowlayout.js" />
+    <Content Include="Content\lib\utils\JS\learun-form.js" />
+    <Content Include="Content\lib\utils\JS\learun-im.js" />
+    <Content Include="Content\lib\utils\JS\learun-ui.js" />
+    <Content Include="Content\lib\utils\JS\learun-webApp.js" />
+    <Content Include="Content\lib\utils\JS\learun-webAppData.js" />
+    <Content Include="Content\lib\validator\validator.js" />
+    <Content Include="Content\Moulds\Login\css\style.css" />
+    <Content Include="Content\Moulds\Login\images\buttonbg.png" />
+    <Content Include="Content\Moulds\Login\images\cloud.png" />
+    <Content Include="Content\Moulds\Login\images\light.png" />
+    <Content Include="Content\Moulds\Login\images\loginbg1.png" />
+    <Content Include="Content\Moulds\Login\images\loginbg2.png" />
+    <Content Include="Content\Moulds\Login\images\loginbg3.png" />
+    <Content Include="Content\Moulds\Login\images\logininfo.png" />
+    <Content Include="Content\Moulds\Login\images\loginlogo.png" />
+    <Content Include="Content\Moulds\Login\images\loginpassword.png" />
+    <Content Include="Content\Moulds\Login\images\loginsj.png" />
+    <Content Include="Content\Moulds\Login\images\loginuser.png" />
+    <Content Include="Content\Moulds\Login\js\cloud.js" />
+    <Content Include="Content\Moulds\yq\NpsaInputData.index.js" />
+    <Content Include="Content\Moulds\yq\Pn.Index.js" />
+    <Content Include="Content\Moulds\yq\warehouse.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\lib\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\lib\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\lib\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\lib\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\lib\FileUpload\.jshintrc" />
+    <Content Include="Content\lib\FileUpload\.npmignore" />
+    <Content Include="Content\lib\FileUpload\bower.json" />
+    <Content Include="Content\lib\FileUpload\CONTRIBUTING.md" />
+    <Content Include="Content\lib\FileUpload\LICENSE" />
+    <Content Include="Content\lib\FileUpload\package.json" />
+    <Content Include="Content\lib\FileUpload\README.md" />
+    <Content Include="Content\lib\FileUpload\server\gae-go\app.yaml" />
+    <Content Include="Content\lib\FileUpload\server\gae-go\app\main.go" />
+    <Content Include="Content\lib\FileUpload\server\gae-python\app.yaml" />
+    <Content Include="Content\lib\FileUpload\server\gae-python\main.py" />
+    <Content Include="Content\lib\FileUpload\server\php\docker-compose.yml" />
+    <Content Include="Content\lib\FileUpload\server\php\Dockerfile" />
+    <Content Include="Content\lib\FileUpload\server\php\files\.htaccess" />
+    <Content Include="Content\lib\FileUpload\server\php\index.php" />
+    <Content Include="Content\lib\FileUpload\server\php\UploadHandler.php" />
+    <None Include="bundleconfig.json" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery.form.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BaseController.cs" />
+    <Compile Include="App_Start\BasicsHerp.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DataTableHerp.cs" />
+    <Compile Include="App_Start\EnumBusinessPermission.cs" />
+    <Compile Include="App_Start\ExcelHerp.cs" />
+    <Compile Include="App_Start\HandlerErrorAttribute.cs" />
+    <Compile Include="App_Start\JosnNetResult.cs" />
+    <Compile Include="App_Start\JsVer.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\System\Controllers\BaseDataController.cs" />
+    <Compile Include="Areas\System\Controllers\DepartmentController.cs" />
+    <Compile Include="Areas\System\Controllers\MenusController.cs" />
+    <Compile Include="Areas\System\Controllers\RoleController.cs" />
+    <Compile Include="Areas\System\Controllers\SettingController.cs" />
+    <Compile Include="Areas\System\Controllers\UserController.cs" />
+    <Compile Include="Areas\System\SystemAreaRegistration.cs" />
+    <Compile Include="Areas\YQ\Controllers\GSMController.cs" />
+    <Compile Include="Areas\YQ\Controllers\GSMDataDownController.cs" />
+    <Compile Include="Areas\YQ\Controllers\LocationController.cs" />
+    <Compile Include="Areas\YQ\Controllers\NPSAController.cs" />
+    <Compile Include="Areas\YQ\Controllers\NPSAInputDataController.cs" />
+    <Compile Include="Areas\YQ\Controllers\PNController.cs" />
+    <Compile Include="Areas\YQ\Controllers\ProjectController.cs" />
+    <Compile Include="Areas\YQ\Controllers\SBBTypeController.cs" />
+    <Compile Include="Areas\YQ\Controllers\VendorController.cs" />
+    <Compile Include="Areas\YQ\Controllers\WareHouseController.cs" />
+    <Compile Include="Areas\YQ\Controllers\WeekController.cs" />
+    <Compile Include="Areas\YQ\YQAreaRegistration.cs" />
+    <Compile Include="common\clsPublic.cs" />
+    <Compile Include="common\JQGridHelper.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JsonMsg.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Default.cshtml" />
+    <Content Include="Content\lib\utils\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\lib\utils\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\lib\utils\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\lib\utils\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\lib\utils\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\lib\utils\fonts\FontAwesome.otf" />
+    <Content Include="Areas\System\Views\web.config" />
+    <Content Include="Areas\System\Views\Menus\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutIndex.cshtml" />
+    <Content Include="Areas\System\Views\Menus\Form.cshtml" />
+    <Content Include="Views\Shared\_LayoutForm.cshtml" />
+    <Content Include="Content\lib\utils\Images\icon_v_b_e.psd" />
+    <Content Include="Areas\System\Views\BaseData\IconList.cshtml" />
+    <Content Include="Views\Shared\_Index.cshtml" />
+    <Content Include="Areas\System\Views\Menus\ActionForm.cshtml" />
+    <Content Include="Areas\System\Views\Menus\ViewForm.cshtml" />
+    <Content Include="Areas\System\Views\Role\Index.cshtml" />
+    <Content Include="Areas\System\Views\Role\authorizeForm.cshtml" />
+    <Content Include="Areas\System\Views\Role\Form.cshtml" />
+    <Content Include="Areas\System\Views\User\Index.cshtml" />
+    <Content Include="Areas\System\Views\User\Form.cshtml" />
+    <Content Include="Areas\System\Views\User\AssignRoleForm.cshtml" />
+    <Content Include="Config\log4net.config" />
+    <Content Include="Areas\System\Views\BaseData\LogIndex.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Content\Moulds\Home\CSS\fonts\BebasNeue-webfont.ttf" />
+    <Content Include="Content\Moulds\Home\CSS\fonts\fontomas-webfont.ttf" />
+    <Content Include="Content\Moulds\Home\CSS\fonts\franchise-bold-webfont.ttf" />
+    <Content Include="Areas\System\Views\Setting\Index.cshtml" />
+    <Content Include="Areas\System\Views\Setting\Form.cshtml" />
+    <Content Include="Content\Moulds\HomeLTE\css\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Moulds\HomeLTE\css\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Moulds\HomeLTE\css\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Moulds\HomeLTE\css\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Moulds\HomeLTE\css\fonts\FontAwesome.otf" />
+    <Content Include="Areas\System\Views\Department\List.cshtml" />
+    <Content Include="Areas\System\Views\Department\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\web.config" />
+    <Content Include="Areas\YQ\Views\NPSA\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\NPSA\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\Location\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\Location\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\GSM\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\GSM\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\SBBType\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\SBBType\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\PN\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\PN\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\PN\UpLoad.cshtml" />
+    <Content Include="Areas\YQ\Views\Vendor\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\Vendor\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\Week\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\Week\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\NPSAInputData\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\NPSAInputData\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\Project\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\Project\Form.cshtml" />
+    <Content Include="Areas\YQ\Views\WareHouse\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\GSMDataDown\Index.cshtml" />
+    <Content Include="Areas\YQ\Views\NPSAInputData\WorkToGSM.cshtml" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="ContentFile\template\Warehouse.xlsx" />
+    <None Include="Properties\PublishProfiles\WebSite.pubxml" />
+    <Content Include="Views\Shared\_LayoutFormFile.cshtml" />
+    <Content Include="Views\Shared\_LayoutForm2.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\YQ\Models\" />
+    <Folder Include="Areas\YQ\Views\Shared\" />
+    <Folder Include="Content\lib\jqSelect2\i18n\" />
+    <Folder Include="Content\lib\NewFolder1\" />
+    <Folder Include="SystemLog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoticLight.Business\LoticLight.Business.csproj">
+      <Project>{516a060f-00f2-479f-9f34-ac4e7d470ae5}</Project>
+      <Name>LoticLight.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoticLight.Log\LoticLight.Log.csproj">
+      <Project>{1eb9d568-6187-46ce-be06-e7a7bd1996c0}</Project>
+      <Name>LoticLight.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoticLight.Model\LoticLight.Model.csproj">
+      <Project>{fb8d5d18-5d3c-4eef-804b-fe74f29e99dc}</Project>
+      <Name>LoticLight.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoticLight.Session\LoticLight.Session.csproj">
+      <Project>{166faf6c-43a4-4272-b033-a9013cd33f5c}</Project>
+      <Name>LoticLight.Session</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoticLight.Utility\LoticLight.Utility.csproj">
+      <Project>{fc0f1a2d-0370-4745-92fe-aca419351c5e}</Project>
+      <Name>LoticLight.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

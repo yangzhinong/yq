@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+
+    var lstNPSAs = ViewBag.lstNPSAs as List<string>;
+}
+
+<link href="~/Content/lib/jqSelect2/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/lib/jqSelect2/select2.min.js"></script>
+<script type="text/javascript">
+    //获取url参数
+
+    var keyValue = request('keyValue');
+    $(function () {
+        initControl();
+    })
+    //初始化控件
+    function initControl() {
+        //$('#sel2').select2({
+        //    data: [{ id: 1, text: 'yzn' }, { id: 2, text: 'yq' }, { id: 3, text: 'test' }],
+        //    placeholder: '请选择',
+        //    allowClear: true,
+        //    multiple: true
+        //});
+
+        $('#NPSA').select2({
+            placeholder: "==请选择==",
+            allowClear: true
+        });
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "/YQ/Project/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data);
+                }
+            });
+        }
+
+    }
+    //保存表单
+    function AcceptClick() {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls(keyValue);
+        $.SaveForm({
+            url: "/YQ/Project/SaveForm?keyValue=" + keyValue,
+            param: postData,
+            loading: "正在保存数据...",
+            success: function () {
+                top.frames[tabiframeId()].$("#gridTable").trigger("reloadGrid");
+            }
+        })
+    }
+    function btnTest() {
+        //console.log($('#sel2').select2("data"));
+        console.log($('#sel2').select2('val'));
+        var $sel = $('#sel2').select2();
+        $sel.val(["1", "3"]).trigger("change");
+    }
+</script>
+<div style="margin-left:10px; margin-top:20px; margin-right:30px;">
+    <table class="form">
+        <tr>
+            <td class="formTitle"><b>N</b>ame<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <input id="Name" accesskey="N" type="text" onblur="" class="form-control" placeholder="Please Input Name" isvalid="yes" checkexpession="NotNull" maxlength="50"  />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">N<b>P</b>SA<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <select id="NPSA" type="select2" accesskey="P" name="Project" class="ui-select2" style="width:100%"  data-maximum-selection-length="1" multiple="multiple" isvalid="yes" checkexpession="NotNull">
+                    @foreach (var item in lstNPSAs)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+            </td>
+            </tr>
+        <tr>
+            <td></td>
+            <td colspan="3">
+                <span class="help-block">提示:</span>
+                <span class="help-block" style="margin-left:2em">1. Alt + 黑体字母 可快速访问输入框.</span>
+                <span class="help-block" style="margin-left:2em">2. 下拉框 Enter键 即可选中提示项.</span>
+            </td>
+        </tr>
+
+        @*<tr>
+                <td class="formTitle"></td>
+                <td class="formValue" colspan="3">
+                    <a class="btn btn-default" href="javascript:void" id="btn-test" onclick="btnTest()">Get Valule</a>
+                </td>
+            </tr>*@
+    </table>
+</div>
+
+
+

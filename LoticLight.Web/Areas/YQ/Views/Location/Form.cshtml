@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+
+<script type="text/javascript">
+    //获取url参数
+
+    var keyValue = request('keyValue');
+    $(function () {
+        initControl();
+    })
+    //初始化控件
+    function initControl() {
+
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "/YQ/Location/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data);
+                }
+            });
+        }
+
+    }
+    //保存表单
+    function AcceptClick() {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls(keyValue);
+        $.SaveForm({
+            url: "/YQ/Location/SaveForm?keyValue=" + keyValue,
+            param: postData,
+            loading: "正在保存数据...",
+            success: function () {
+                top.frames[tabiframeId()].$("#gridTable").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<div style="margin-left:10px; margin-top:20px; margin-right:30px;">
+    <table class="form">
+        <tr>
+            <td class="formTitle">Name<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="Name" type="text" onblur="" class="form-control" placeholder="Please Input Name" isvalid="yes" checkexpession="NotNull" maxlength="50" style="background-color:#ddcbcb" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+

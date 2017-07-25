@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+<script type="text/javascript">
+
+    var viewId = request('Id');
+    var MenuId = request('MenuId');
+    $(function () {
+        initControl();
+    })
+    var dataJson = top.Form.columnJson;
+    //初始化控件
+    function initControl() {
+
+        if (!!viewId) {
+            $.each(dataJson, function (i) {
+                var row = dataJson[i];
+                if (row.Id == viewId || row.ViewId == viewId) {
+                    $("#form1").SetWebControls(row);
+                }
+            });
+        } else {
+            $("#MenuId").val(MenuId);
+
+        }
+    }
+    //保存表单
+    function AcceptClick(callback) {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var data = $("#form1").GetWebControls();
+        callback(data);
+        dialogClose();
+    }
+</script>
+<div style="margin-top: 10px; margin-right: 30px;">
+    <input id="ViewId" type="hidden" value="@Guid.NewGuid().ToString()" />
+    <input id="Id" type="hidden" value="" />
+    <input id="MenuId" type="hidden" />
+    <table class="form">
+        <tr>
+            <th class="formTitle">编号<font face="宋体">*</font></th>
+            <td class="formValue">
+                <input id="ViewCode" type="text" class="form-control" placeholder="请输入编号" isvalid="yes" checkexpession="NotNull" />
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">名称<font face="宋体">*</font></th>
+            <td class="formValue">
+                <input id="ViewName" type="text" class="form-control" placeholder="请输入名称" isvalid="yes" checkexpession="NotNull" />
+            </td>
+        </tr>
+
+        <tr>
+            <th class="formTitle">描述</th>
+            <td class="formValue">
+                <input id="Describe" type="text" class="form-control" />
+            </td>
+        </tr>
+    </table>
+</div>
+
