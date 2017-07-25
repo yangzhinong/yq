@@ -25,3 +25,8 @@ config
 *.exe
 /ConsoleTest/bin/Debug/*.exe
 /packages
+/LoticLight.Web/Web.config
+/LoticLight.Utility/T4Helper.cs
+/LoticLight.Model/App.Config
+LoticLight.Test
+ConsoleTest
