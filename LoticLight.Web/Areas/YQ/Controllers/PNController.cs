@@ -79,7 +79,7 @@ namespace LoticLight.Web.Areas.YQ.Controllers
         }
 
         [SimpleCheckPermission("admin")]
-        public ActionResult SaveForm(Model.YqPN obj,string Location)
+        public ActionResult SaveForm(Model.YqPN obj,string Location, string GSM)
         {
             if (string.IsNullOrEmpty(obj.Id))
             {
@@ -92,7 +92,7 @@ namespace LoticLight.Web.Areas.YQ.Controllers
                     var aS = Location.Split(',');
                     foreach (var a in aS)
                     {
-                        Business.YqPnLocationService.Instance.AddEntities(new YqPnLocation { PN = obj.PN, Location = a });
+                        Business.YqPnLocationService.Instance.AddEntities(new YqPnLocation { PN = obj.PN, Location = a,GSM=GSM });
                     }
                 }
             }
@@ -108,7 +108,7 @@ namespace LoticLight.Web.Areas.YQ.Controllers
                     var aS = Location.Split(',');
                     foreach (var a in aS)
                     {
-                        Business.YqPnLocationService.Instance.AddEntities(new YqPnLocation { PN = obj.PN, Location = a });
+                        Business.YqPnLocationService.Instance.AddEntities(new YqPnLocation { PN = obj.PN, Location = a ,GSM=GSM});
                     }
                 }
 
@@ -123,11 +123,13 @@ namespace LoticLight.Web.Areas.YQ.Controllers
 
             var pnLocations = Business.YqPnLocationService.Instance.LoadEntities(x => x.PN == data.PN)
                               .Select(x => x.Location).ToArray();
+            var pnGSMs = Business.YqPnLocationService.Instance.LoadEntities(x => x.PN == data.PN)
+                             .Select(x => x.GSM).Distinct().ToString();
             var data2 = new
             {
                 data.Id,
                 data.PN,
-                data.GSM,
+                GSM = string.Join(",", pnGSMs),
                 data.SBBType,
                 data.Vendor,
                 Location = string.Join(",", pnLocations),
@@ -241,7 +243,9 @@ WHERE a.PN= c.PN ORDER BY a.PN";
         private class ExcelInputModel: Model.YqPN
         {
             public string Location { get; set; }
-            public string Vendor { get; set; }
+           
+
+            public string GSM { get; set; }
 
             public bool Valid()
             {

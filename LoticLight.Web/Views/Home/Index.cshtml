@@ -65,7 +65,7 @@
                                 <span class="hidden-xs">@ViewBag.UserName</span>
                             </a>
                             <ul class="dropdown-menu pull-right">
-                                <li><a class="menuItem" data-id="userInfo" href="/PersonCenter/Index"><i class="fa fa-user"></i>个人信息</a></li>
+                                <li><a class="menuItem" id="btn-change-pwd" data-id="userInfo" ><i class="fa fa-user"></i>修改密码</a></li>
                                 <li><a href="javascript:void();"><i class="fa fa-trash-o"></i>清空缓存</a></li>
                                 <li class="divider"></li>
                                 <li><a href="javascript:void();" onclick="$.learunindex.indexOut()"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
@@ -139,9 +139,77 @@
         正在拼了命为您加载…
     </div>
 
+    <div id="div-change-pwd" style="display:none;">
+        <form action="/User/ChangePwd" method="post">
+            <div class="form-group">
+                <label>旧密码</label>
+                <div>
+                    <input type="password" class="form-control" name="oldPwd" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label>新密码</label>
+                <div>
+                    <input type="password" class="form-control" name="newPwd1" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label>旧密码</label>
+                <div>
+                    <input type="password" class="form-control" name="newPwd2" />
+
+                </div>
+            </div>
+        </form>
+    </div>
+
     <script>
     //web应用路径
     var contentPath = '@Url.Content("~")'.substr(0, '@Url.Content("~")'.length - 1);
+    </script>
+
+    <script type="text/javascript">
+        $('#btn-change-pwd').click(function () {
+            var dlg = new top.BootstrapDialog({
+                title: 'Change Password',
+                draggable: true,
+                closeByBackdrop: false,
+                message: function () {
+                    var $div = $('<div/>');
+                    $div.append($("#div-change-pwd").html());
+                    return $div;
+                },
+                buttons: [
+                    {
+                        label: 'OK',
+                        cssClass: 'btn btn-ok',
+                        action: function () {
+                            var $frm = dlg.$modal.find('form');
+                            $.post($frm.attr("action"), $frm.serialize(), function (res) {
+                                if (res.code) {
+                                    dlg.close();
+                                    dialogMsg("修改密码成功!", 1 /* OK */);
+                                }
+                                else {
+                                    dialogAlert(res.msg, -1 /* Error */);
+                                }
+                            });
+                        }
+                    }, {
+                        label: 'Cancel',
+                        cssClass: 'btn btn-cancel',
+                        action: function () {
+                            var me = this;
+                            me.dialog.close();
+                        }
+                    }
+                ]
+            });
+            dlg.open();
+        });
+       
     </script>
 
 </body>

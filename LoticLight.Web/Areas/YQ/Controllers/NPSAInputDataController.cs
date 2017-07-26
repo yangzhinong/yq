@@ -84,7 +84,6 @@ namespace LoticLight.Web.Areas.YQ.Controllers
                     x.Desp,
                     x.SBBType,
                     x.Vendor,
-                    x.GSM,
                     FullName= x.PN+" : "+x.Desp
                 }).OrderBy(x=>x.PN).ToList();
 
@@ -190,6 +189,13 @@ namespace LoticLight.Web.Areas.YQ.Controllers
             if (oLastWeekdata ==null && obj.Mode == "CANCEL")
             {
                 throw new Exception("上周没有该数据! 不能选用CANCEL模式!");
+            }
+
+            if (obj.Mode != "CANCEL")
+            {
+               if ( Business.YqPnLocationService.Instance.LoadEntities(x => x.Location == obj.Location && obj.PN == x.PN).FirstOrDefault()==null){
+                    throw new Exception("该PN没有此Location! 如果确实有此关系,请先维护PN基础资料!");
+               }
             }
         }
 

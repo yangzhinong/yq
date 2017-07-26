@@ -119,5 +119,45 @@ namespace LoticLight.Web.Areas.System.Controllers
             var data = Business.Sys_UserService.Instance.LoadEntities();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
+        [NotCheckPermission]
+        public ActionResult ChangePwd(string oldPwd , string newPwd1, string newPwd2)
+        {
+            Sys_User user = null;
+            try
+            {
+                user = LoticLight.Session.WebSession.CurrentAccount.User;
+            } catch
+            {
+                return JsonMsg.ErrMsg("会话失效,请重新登录后重试");
+            }
+
+           var  oldUser = Business.Sys_UserService.Instance.FindEntities(user.Id);
+
+            if (oldUser.Password != Utility.DEncrypt.Encrypt(oldPwd))
+            {
+                return JsonMsg.ErrMsg("旧密码不正确!");
+            }
+            if (string.IsNullOrWhiteSpace(newPwd1) || newPwd1.Length<5)
+            {
+                return JsonMsg.ErrMsg("新密码不能为空,并且不能低于6位!");
+            }
+
+            if (newPwd1 != newPwd2)
+            {
+                return JsonMsg.ErrMsg("新旧密码不一致!");
+            }
+
+            oldUser.Password = Utility.DEncrypt.Encrypt(newPwd1);
+            if (Business.Sys_UserService.Instance.UpdateEntities(oldUser))
+            {
+                return JsonMsg.OkMsg("密码修改成功!");
+
+            } else
+            {
+                return JsonMsg.ErrMsg("密码修改失败!");
+            }
+
+        }
     }
 }
