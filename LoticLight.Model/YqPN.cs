@@ -18,7 +18,6 @@ namespace LoticLight.Model
         public string PN { get; set; }
         public string Desp { get; set; }
         public string SBBType { get; set; }
-        public string GSM { get; set; }
         public string Vendor { get; set; }
     }
 }

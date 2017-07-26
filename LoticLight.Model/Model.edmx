@@ -294,7 +294,6 @@
           <Property Name="PN" Type="nvarchar" MaxLength="50" />
           <Property Name="Desp" Type="nvarchar" MaxLength="250" />
           <Property Name="SBBType" Type="nvarchar" MaxLength="50" />
-          <Property Name="GSM" Type="nvarchar" MaxLength="50" />
           <Property Name="Vendor" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="YqPnLocation">
@@ -304,6 +303,7 @@
           <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PN" Type="nvarchar" MaxLength="50" />
           <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="GSM" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="YqPnProject">
           <Key>
@@ -404,9 +404,9 @@ warning 6002: The table/view 'yq.dbo.YqViewPN' does not have a primary key defin
           <Property Name="PN" Type="nvarchar" MaxLength="50" />
           <Property Name="Desp" Type="nvarchar" MaxLength="250" />
           <Property Name="SBBType" Type="nvarchar" MaxLength="50" />
-          <Property Name="GSM" Type="nvarchar" MaxLength="50" />
           <Property Name="Vendor" Type="nvarchar" MaxLength="50" />
           <Property Name="Locations" Type="nvarchar(max)" />
+          <Property Name="GSM" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="Testing_DB_backModelStoreContainer">
           <EntitySet Name="Sms_DataDictionary" EntityType="Self.Sms_DataDictionary" Schema="dbo" store:Type="Tables" />
@@ -472,9 +472,9 @@ warning 6002: The table/view 'yq.dbo.YqViewPN' does not have a primary key defin
     [YqViewPN].[PN] AS [PN], 
     [YqViewPN].[Desp] AS [Desp], 
     [YqViewPN].[SBBType] AS [SBBType], 
-    [YqViewPN].[GSM] AS [GSM], 
     [YqViewPN].[Vendor] AS [Vendor], 
-    [YqViewPN].[Locations] AS [Locations]
+    [YqViewPN].[Locations] AS [Locations], 
+    [YqViewPN].[GSM] AS [GSM]
     FROM [dbo].[YqViewPN] AS [YqViewPN]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -802,7 +802,6 @@ warning 6002: The table/view 'yq.dbo.YqViewPN' does not have a primary key defin
           <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Desp" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="SBBType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GSM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="YqPnLocation">
@@ -812,6 +811,7 @@ warning 6002: The table/view 'yq.dbo.YqViewPN' does not have a primary key defin
           <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GSM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="YqPnProject">
           <Key>
@@ -906,9 +906,9 @@ warning 6002: The table/view 'yq.dbo.YqViewPN' does not have a primary key defin
           <Property Name="PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Desp" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="SBBType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GSM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Locations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GSM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1219,7 +1219,6 @@ warning 6002: The table/view 'yq.dbo.YqViewPN' does not have a primary key defin
             <EntityTypeMapping TypeName="Testing_DB_backModel.YqPN">
               <MappingFragment StoreEntitySet="YqPN">
                 <ScalarProperty Name="Vendor" ColumnName="Vendor" />
-                <ScalarProperty Name="GSM" ColumnName="GSM" />
                 <ScalarProperty Name="SBBType" ColumnName="SBBType" />
                 <ScalarProperty Name="Desp" ColumnName="Desp" />
                 <ScalarProperty Name="PN" ColumnName="PN" />
@@ -1230,6 +1229,7 @@ warning 6002: The table/view 'yq.dbo.YqViewPN' does not have a primary key defin
           <EntitySetMapping Name="YqPnLocation">
             <EntityTypeMapping TypeName="Testing_DB_backModel.YqPnLocation">
               <MappingFragment StoreEntitySet="YqPnLocation">
+                <ScalarProperty Name="GSM" ColumnName="GSM" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="PN" ColumnName="PN" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1332,9 +1332,9 @@ warning 6002: The table/view 'yq.dbo.YqViewPN' does not have a primary key defin
           <EntitySetMapping Name="YqViewPN">
             <EntityTypeMapping TypeName="Testing_DB_backModel.YqViewPN">
               <MappingFragment StoreEntitySet="YqViewPN">
+                <ScalarProperty Name="GSM" ColumnName="GSM" />
                 <ScalarProperty Name="Locations" ColumnName="Locations" />
                 <ScalarProperty Name="Vendor" ColumnName="Vendor" />
-                <ScalarProperty Name="GSM" ColumnName="GSM" />
                 <ScalarProperty Name="SBBType" ColumnName="SBBType" />
                 <ScalarProperty Name="Desp" ColumnName="Desp" />
                 <ScalarProperty Name="PN" ColumnName="PN" />
